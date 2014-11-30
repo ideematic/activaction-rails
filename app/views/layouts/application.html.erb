@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ActivactionRails</title>
+  <%= stylesheet_link_tag "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= render partial: 'layouts/menu' %>
+<%= render partial: 'shared/flash_messages' %>
+{{> chatWindow}}
+<!--{{> userMenu}}-->
+<!--{{> carousel}}-->
+
+<div class="row">
+  <div class="content-left col-md-10">
+    <%= yield %>
+  </div>
+  <div class="content-right col-md-2">
+    {{> userMenu}}
+  </div>
+</div>
+
+<%= render partial: 'layouts/footer' %>
+
+
+</body>
+</html>

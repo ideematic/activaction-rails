@@ -1,0 +1,24 @@
+<div id="flash"></div>
+<%
+   flash_types = {notice: 'alert-success',
+                  alert: '',
+                  info: 'alert-info',
+                  success: 'alert-success',
+                  error: 'alert-error'}
+%>
+<% if flash[:notice] || flash[:alert] || flash[:info] || flash[:success] || flash[:error] %>
+    <div class="panel panel-default container">
+      <div class="panel-body">
+        <% flash_types.each do |type, klass| %>
+            <% if flash && flash[type] %>
+                <div class="alert <%= klass %> alert-dismissable">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    <i class="fa fa-times-circle"></i>
+                  </button>
+                  <%= flash[type] %>
+                </div>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+<% end %>

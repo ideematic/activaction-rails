@@ -1,0 +1,50 @@
+<nav class="navbar navbar-inverse" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse"
+              data-target="#bs-example-navbar-collapse-1"><span class="sr-only">Toggle navigation</span> <span
+      class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
+      <!--<a class="navbar-brand text-blue" href="#">ORB</a>-->
+      <a href="/" style="margin-right: 60px"><img src="/images/logo_activaction.png" style="height: 50px"/></a>
+    </div>
+
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="<%= root_path%>">Accueil</a></li>
+        <li><a href="/community">Communauté</a></li>
+        <li><a href="/events">Evénements</a></li>
+        <li><a href="<%= url_for(controller: 'static', action: 'about') %>">A propos</a></li>
+      </ul>
+
+      <!--Sign In Form-->
+      <ul class="nav navbar-nav navbar-right">
+        {{#if currentUser}}
+        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          Bienvenue, {{currentUser.username}}
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="portfolio.html">Profile</a></li>
+            <li><a class='logout' href="#">Logout</a></li>
+          </ul>
+        </li>
+        {{ else }}
+        <li class="dropdown" id="menuLogin">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">
+            Connection
+          </a>
+
+          <div class="dropdown-menu">
+            <%= render partial: 'devise/sessions/sign_in_form' %>
+          </div>
+        </li>
+        {{/if}}
+      </ul>
+      <!--/Sign In Form-->
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container-fluid -->
+</nav>

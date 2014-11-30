@@ -1,0 +1,61 @@
+#iron-router-progress {
+    background-color: #66CEE9;
+}
+
+#activ-boost-home {
+    background-color: rgb(0, 169, 220);
+    margin-top: 20px;
+}
+
+.blog-post-short {
+    padding: 10px;
+    background-color: white;
+    margin-bottom: 30px;
+}
+
+#main-content .h2_home {
+    letter-spacing: 1px;
+    font-size: 25px;
+    margin-top: 23px;
+    margin-bottom: 23px
+}
+
+.alert {
+    margin-bottom: 12px;
+}
+
+.alert:last-child {
+    margin-bottom: 0px;
+}
+
+.frontend {
+    background: #fff;
+    margin-top: 0;
+    padding: 25px;
+    border-radius: 3px;
+    padding-top: 10px;
+    padding-bottom: 0;
+}
+
+.content-right {
+    background-color: #33383d;
+    border-radius: 3px;
+    padding: 15px;
+}
+
+.navbar {
+    min-height: 60px;
+    padding: 7px;
+}
+
+.container {
+    width: auto !important;
+}
+/*.container2 {*/
+    /*background: #fff;*/
+    /*margin-top: 0;*/
+    /*padding: 25px;*/
+    /*border-radius: 3px;*/
+    /*padding-top: 10px;*/
+    /*padding-bottom: 0;*/
+/*}*/
