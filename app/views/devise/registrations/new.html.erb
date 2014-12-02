@@ -1,18 +1,303 @@
-<h2>Sign up</h2>
+<div class="container frontend" style="padding-top: 0px">
+<div class="row">
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+<!--<div class="page-header">-->
+<!--<h1>Créer un compte</h1>-->
+<!--</div>-->
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+<!--Content-->
+<div class="col-md-12 margin-negative-right-left-10px">
+  <div class="row bg-dark-cold-grey">
+    <div class="col-md-6">
+      <div class="registration-left-block">
+        <h4>Déjà</h4>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+        <h2>534</h2>
+        <h4>membres inscrits</h4>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+        <p class="lead">En rejoignant Activ'action, vitae auctor elit pellentesque sit amet. Nulla hendrerit
+          gravida accumsan. Nullam viverra mi et tristique auctor. </p>
+        <ol>
+          <li>Get unlimited access to resources, such as forms, classes and other pleasure stuff</li>
+          <li>50000 users cannot be wrong! Nunc iaculis massa dui, nec sagittis quam auctor id.</li>
+          <li>Aenean tristique urna ut eros dictum, nec accumsan purus fermentum. 694+ Every Day!</li>
+          <li>Donec volutpat vehicula dui, bibendum luctus odio fermentum nec. Up to 80 Every month!</li>
+          <li>Cras ac erat sit amet turpis fermentum sodales. Yes! We promise!</li>
+        </ol>
+        <i class="fa fa-4x fa-plus-circle"></i>
 
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
+        <h3>Much more!</h3>
+      </div>
+    </div>
+    <!--RegForm left side ends-->
+    <div class="col-md-6 bg-cold-grey">
 
-<%= render "devise/shared/links" %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'orb-form registration-form'}) do |f| %>
+          <header>Rejoignez Activ'action !</header>
+
+          <%= devise_error_messages! %>
+
+          <fieldset>
+            <section>
+              <%= f.label :username, class: "input #{'state-error' if !resource.errors[:username].blank?}" do %>
+                  <i class="icon-append fa fa-user"></i>
+                  <%= f.text_field :username, placeholder: 'Pseudo' %>
+                  <!--value: @params[:user] && @params[:user][:username]-->
+                  <b class="tooltip tooltip-bottom-right">Le pseudo est requis.</b>
+              <% end %>
+              <% if !resource.errors[:username].blank? %>
+                  <em class="invalid"><%= resource.errors[:username].join %></em>
+              <% end %>
+            </section>
+
+            <div class="row">
+              <section class="col col-6">
+                <%= f.label :first_name, class: "input #{'state-error' if !resource.errors[:first_name].blank?}" do %>
+                    <i class="icon-append fa fa-user"></i>
+                    <%= f.text_field :first_name, placeholder: 'Prénom' %>
+                    <b class="tooltip tooltip-bottom-right">Le prénom est requis</b>
+                <% end %>
+                <% if !resource.errors[:first_name].blank? %>
+                    <em class="invalid"><%= resource.errors[:first_name].join %></em>
+                <% end %>
+              </section>
+
+              <section class="col col-6">
+                <%= f.label :last_name, class: "input #{'state-error' if !resource.errors[:last_name].blank?}" do %>
+                    <i class="icon-append fa fa-user"></i>
+                    <%= f.text_field :last_name, placeholder: 'Nom' %>
+                    <b class="tooltip tooltip-bottom-right">Le prénom est requis</b>
+                <% end %>
+                <% if !resource.errors[:last_name].blank? %>
+                    <em class="invalid"><%= resource.errors[:last_name].join %></em>
+                <% end %>
+              </section>
+            </div>
+            <section>
+              <%= f.label :gender, class: "select #{'state-error' if !resource.errors[:gender].blank?}" do %>
+                  <i class="icon-append fa fa-user"></i>
+                  <%= f.select :gender, [['Homme', true], ['Femme', false]], class: 'form-control' %>
+                  <b class="tooltip tooltip-bottom-right">Le sexe est requis</b>
+                  <i></i>
+              <% end %>
+              <% if !resource.errors[:gender].blank? %>
+                  <em class="invalid"><%= resource.errors[:gender].join %></em>
+              <% end %>
+            </section>
+          </fieldset>
+
+          <fieldset>
+            <section>
+              <%= f.label :email, class: "input #{'state-error' if !resource.errors[:email].blank?}" do %>
+                  <i class="icon-append fa fa-envelope-o"></i>
+                  <%= f.text_field :email, placeholder: 'email' %>
+                  <b class="tooltip tooltip-bottom-right">Needed to verify your account</b>
+              <% end %>
+              <% if !resource.errors[:email].blank? %>
+                  <em class="invalid"><%= resource.errors[:email].join %></em>
+              <% end %>
+            </section>
+
+            <section>
+              <%= f.label :password, class: "input #{'state-error' if !resource.errors[:password].blank?}" do %>
+                  <i class="icon-append fa fa-lock"></i>
+                  <%= f.password_field :password, placeholder: 'Mot de passe' %>
+                  <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+              <% end %>
+              <% if !resource.errors[:password].blank? %>
+                  <em class="invalid"><%= resource.errors[:password].join %></em>
+              <% end %>
+            </section>
+
+            <section>
+              <%= f.label :password_confirmation, class: "input #{'state-error' if !resource.errors[:password_confirmation].blank?}" do %>
+                  <i class="icon-append fa fa-lock"></i>
+                  <%= f.password_field :password_confirmation, placeholder: 'Confirmation' %>
+                  <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+              <% end %>
+              <% if !resource.errors[:password_confirmation].blank? %>
+                  <em class="invalid"><%= resource.errors[:password_confirmation].join %></em>
+              <% end %>
+            </section>
+
+          </fieldset>
+
+
+          <fieldset>
+            <section>
+
+              <%= f.label :newsletter_at, class: "checkbox #{'state-error' if !resource.errors[:newsletter_at].blank?}" do %>
+                  <%= f.check_box :newsletter_at, placeholder: 'Confirmation' %>
+                  <i></i>Recevoir la NewsLetter
+              <% end %>
+              <% if !resource.errors[:newsletter_at].blank? %>
+                  <em class="invalid"><%= resource.errors[:newsletter_at].join %></em>
+              <% end %>
+              <!--<label class="checkbox">-->
+              <!--<input type="checkbox" name="subscription" id="subscription">-->
+              <!--<i></i>Recevoir la NewsLetter-->
+              <!--</label>-->
+
+              <%= f.label :terms_at, class: "checkbox #{'state-error' if !resource.errors[:terms_at].blank?}" do %>
+                  <%= f.check_box :terms_at, placeholder: 'Confirmation' %>
+                  <i></i>J'ai lu les
+                  <a href="#" data-toggle="modal" data-target="#termsModal">Conditions Générales d'Utilisation</a>
+              <% end %>
+              <% if !resource.errors[:terms_at].blank? %>
+                  <em class="invalid"><%= resource.errors[:terms_at].join %></em>
+              <% end %>
+              <!--<label class="checkbox">-->
+              <!--<input type="checkbox" name="terms" id="terms">-->
+              <!--<i></i>J'ai lu les <a href="#" data-toggle="modal" data-target="#termsModal">Conditions Générales d'Utilisation</a>-->
+              <!--</label>-->
+            </section>
+          </fieldset>
+          <footer>
+            <%= f.submit 'Créer mon compte', class: 'btn btn-lg btn-default' %>
+          </footer>
+      <% end %>
+      <!--{{/autoForm}}-->
+    </div>
+    <!--RegForm Ends-->
+  </div>
+</div>
+<!--RegForm Row Ends-->
+<div class="clearfix"></div>
+
+<!--Simple Testimonials-->
+<div class="simple-testimonials">
+  <h2>Just read that!</h2>
+  <!--Quote1-->
+  <div class="col-md-6">
+    <div class="cbp-qtcontent">
+      <div class="user-img"><img src="http://placehold.it/600x600" alt="User"/></div>
+      <blockquote>
+        <h3>Incredible Service!</h3>
+
+        <p>Nullam lacinia diam quis purus aliquet, sit amet consectetur dui rutrum. In hac habitasse platea
+          dictumst. Proin volutpat ligula eu semper pretium. Donec euismod sit amet dolor non posuere.</p>
+
+        <p class="rating">Rating: <i class="fa fa-star text-orange"></i> <i class="fa fa-star text-orange"></i> <i
+        class="fa fa-star text-orange"></i> <i class="fa fa-star text-orange"></i> <i
+        class="fa fa-star text-orange"></i></p>
+        <footer>Qo Mastroyani, HostingReview Co.</footer>
+      </blockquote>
+    </div>
+  </div>
+  <!--Quote2-->
+  <div class="col-md-6">
+    <div class="cbp-qtcontent">
+      <div class="user-img"><img src="http://placehold.it/600x600" alt="User"/></div>
+      <blockquote>
+        <h3>Killer Functionality!</h3>
+
+        <p>Maecenas ac leo scelerisque, aliquet quam a, varius velit. Donec vel diam nec felis ultrices lacinia
+          vitae at nibh. Nunc tristique velit non dui malesuada fermentum. Nulla id congue magna.</p>
+
+        <p class="rating">Rating: <i class="fa fa-star text-orange"></i> <i class="fa fa-star text-orange"></i> <i
+        class="fa fa-star text-orange"></i> <i class="fa fa-star text-orange"></i> <i
+        class="fa fa-star text-orange"></i></p>
+        <footer>John Marchello, ParanoidAndroid Inc.</footer>
+      </blockquote>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+
+  <!--Quote3-->
+  <div class="col-md-6">
+    <div class="cbp-qtcontent">
+      <div class="user-img"><img src="http://placehold.it/600x600" alt="User"/></div>
+      <blockquote>
+        <h3>Beautiful Girls!</h3>
+
+        <p>Quisque volutpat sed sapien vel egestas. Suspendisse potenti. Nam vel velit arcu. Vivamus varius quam
+          vitae dolor porttitor interdum varius ac augue. Suspendisse potenti.</p>
+
+        <p class="rating">Rating: <i class="fa fa-star text-orange"></i> <i class="fa fa-star text-orange"></i> <i
+        class="fa fa-star text-orange"></i> <i class="fa fa-star text-orange"></i> <i
+        class="fa fa-star text-orange"></i></p>
+        <footer>Chris DeBlow, Murders Inc.</footer>
+      </blockquote>
+    </div>
+  </div>
+  <!--Quote4-->
+  <div class="col-md-6">
+    <div class="cbp-qtcontent">
+      <div class="user-img"><img src="http://placehold.it/600x600" alt="User"/></div>
+      <blockquote>
+        <h3>Best Support Ever!</h3>
+
+        <p>Aenean suscipit odio sit amet risus vehicula, ut condimentum lacus pretium. Suspendisse id mauris
+          aliquam, laoreet velit at, ultricies metus. Donec euismod sit amet dolor non posuere.</p>
+
+        <p class="rating">Rating: <i class="fa fa-star text-orange"></i> <i class="fa fa-star text-orange"></i> <i
+        class="fa fa-star text-orange"></i> <i class="fa fa-star text-orange"></i> <i
+        class="fa fa-star text-orange"></i></p>
+        <footer>George Sanders, BurgerMac Inc.</footer>
+      </blockquote>
+    </div>
+  </div>
+</div>
+<!--/Simple Testimonials-->
+
+<!--Clients-->
+<div class="clients-block">
+  <h2>World Famous Companies</h2>
+
+  <div class="row">
+    <div class="col-md-1 col-sm-3 col-xs-4">
+      <div class="client-logo"><a href="#"><img class="img-responsive" src="http://placehold.it/600x600"
+                                                alt="Client"></a></div>
+    </div>
+    <div class="col-md-1 col-sm-3 col-xs-4">
+      <div class="client-logo"><a href="#"><img class="img-responsive" src="http://placehold.it/600x600"
+                                                alt="Client"></a></div>
+    </div>
+    <div class="col-md-1 col-sm-3 col-xs-4">
+      <div class="client-logo"><a href="#"><img class="img-responsive" src="http://placehold.it/600x600"
+                                                alt="Client"></a></div>
+    </div>
+    <div class="col-md-1 col-sm-3 col-xs-4">
+      <div class="client-logo"><a href="#"><img class="img-responsive" src="http://placehold.it/600x600"
+                                                alt="Client"></a></div>
+    </div>
+    <div class="col-md-1 col-sm-3 col-xs-4">
+      <div class="client-logo"><a href="#"><img class="img-responsive" src="http://placehold.it/600x600"
+                                                alt="Client"></a></div>
+    </div>
+    <div class="col-md-1 col-sm-3 col-xs-4">
+      <div class="client-logo"><a href="#"><img class="img-responsive" src="http://placehold.it/600x600"
+                                                alt="Client"></a></div>
+    </div>
+    <div class="col-md-1 col-sm-3 col-xs-4">
+      <div class="client-logo"><a href="#"><img class="img-responsive" src="http://placehold.it/600x600"
+                                                alt="Client"></a></div>
+    </div>
+    <div class="col-md-1 col-sm-3 col-xs-4">
+      <div class="client-logo"><a href="#"><img class="img-responsive" src="http://placehold.it/600x600"
+                                                alt="Client"></a></div>
+    </div>
+    <div class="col-md-1 col-sm-3 col-xs-4">
+      <div class="client-logo"><a href="#"><img class="img-responsive" src="http://placehold.it/600x600"
+                                                alt="Client"></a></div>
+    </div>
+    <div class="col-md-1 col-sm-3 col-xs-4">
+      <div class="client-logo"><a href="#"><img class="img-responsive" src="http://placehold.it/600x600"
+                                                alt="Client"></a></div>
+    </div>
+    <div class="col-md-1 col-sm-3 col-xs-4">
+      <div class="client-logo"><a href="#"><img class="img-responsive" src="http://placehold.it/600x600"
+                                                alt="Client"></a></div>
+    </div>
+    <div class="col-md-1 col-sm-3 col-xs-4">
+      <div class="client-logo"><a href="#"><img class="img-responsive" src="http://placehold.it/600x600"
+                                                alt="Client"></a></div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>
+<!--/Clients-->
+
+<!-- /Content-->
+</div>
+</div>

@@ -57,6 +57,8 @@ ActiveRecord::Schema.define(version: 20141129173229) do
     t.boolean  "gender"
     t.text     "bio"
     t.string   "username"
+    t.datetime "terms_at"
+    t.datetime "newsletter_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

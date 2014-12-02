@@ -5,6 +5,8 @@ class SessionsController < DeviseController
 
   prepend_view_path 'app/views/devise'
 
+  respond_to :html, :json, :js
+
   # GET /resource/sign_in
   def new
     self.resource = resource_class.new(sign_in_params)

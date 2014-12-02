@@ -14,15 +14,7 @@
 //= require jquery_ujs
 //= require_tree .
 
-
-$("form#new_user").bind("ajax:success", function (e, data, status, xhr) {
-  if (data.success) {
-    console.log('success');
-    $('#sign_in').modal('hide');
-    $('#sign_in_button').hide();
-    $('#submit_comment').slideToggle(1000, "easeOutBack");
-  } else {
-    console.log('failure');
-    alert('failure!')
-  }
+$(document).on('submit', '#login_form', function(e) {
+}).on('ajax:success', '#login_form', function(e, data, status, xhr) {
+}).on('ajax:error', '#login_form', function(e, data, status, xhr) {
 });

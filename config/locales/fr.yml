@@ -1,0 +1,22 @@
+fr:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            username:
+              blank: 'Ce champ doit être remplis.'
+            first_name:
+              blank: 'Ce champ doit être remplis.'
+            last_name:
+              blank: 'Ce champ doit être remplis.'
+            email:
+              blank: 'Ce champ doit être remplis.'
+              invalid: 'Email mal formatté'
+            password:
+              blank: 'Ce champ doit être remplis.'
+              too_short: 'Le mot de passe doit faire au moins 3 caractères'
+            password_confirmation:
+              confirmation: 'Doit être identique avec le précédent'
+            terms_at:
+              blank: 'Ce champ doit être remplis.'

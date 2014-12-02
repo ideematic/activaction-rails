@@ -2,7 +2,8 @@ ActivactionRails::Application.routes.draw do
   devise_for :users, :path => '',
              :controllers => {
                :sessions => 'sessions',
-               :registrations => 'registrations'},
+               :registrations => 'registrations'
+             },
              :path_names => {
                :sign_in => 'login',
                :password => 'forgot',
@@ -29,9 +30,9 @@ ActivactionRails::Application.routes.draw do
   get '/about' => 'static#about'
   # 'static#homepage'
 
-  resources :users do
-
-  end
+  # resources :users do
+  #
+  # end
 
   resources :events do
 
