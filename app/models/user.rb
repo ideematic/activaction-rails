@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates_presence_of :username, :first_name, :last_name
+  validates_uniqueness_of :username
   # devise add email presence validation
 
 end

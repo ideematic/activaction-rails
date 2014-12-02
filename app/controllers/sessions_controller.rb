@@ -7,6 +7,8 @@ class SessionsController < DeviseController
 
   respond_to :html, :json, :js
 
+  protect_from_forgery except: :create
+
   # GET /resource/sign_in
   def new
     self.resource = resource_class.new(sign_in_params)
@@ -23,6 +25,7 @@ class SessionsController < DeviseController
     respond_to do |format|
       format.json { render :json => {}, :status => :ok }
       format.html { respond_with resource, :location => after_sign_in_path_for(resource) }
+      format.js {}
     end
   end
 

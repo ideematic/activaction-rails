@@ -28,6 +28,7 @@ ActivactionRails::Application.routes.draw do
 
   root 'static#landing'
   get '/about' => 'static#about'
+  get '/register' => redirect('/register/new')
   # 'static#homepage'
 
   # resources :users do

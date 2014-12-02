@@ -6258,12 +6258,12 @@ x:-o-prefocus, .gal-overlay img {
 	-webkit-transform-origin: 0% 0%;
 	-moz-transform-origin: 0% 0%;
 	transform-origin: 0% 0%;
-	-webkit-transform: rotateX(-80deg);
-	-moz-transform: rotateX(-80deg);
-	transform: rotateX(-80deg);
-	-webkit-animation: flip .2s ease-in-out forwards;
-	-moz-animation: flip .2s ease-in-out forwards;
-	animation: flip .2s ease-in-out forwards;
+	/*-webkit-transform: rotateX(-80deg);*/
+	/*-moz-transform: rotateX(-80deg);*/
+	/*transform: rotateX(-80deg);*/
+	/*-webkit-animation: flip .2s ease-in-out forwards;*/
+	/*-moz-animation: flip .2s ease-in-out forwards;*/
+	/*animation: flip .2s ease-in-out forwards;*/
 }
  @-webkit-keyframes flip {
 100% {

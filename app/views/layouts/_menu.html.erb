@@ -13,7 +13,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="<%= root_path%>">Accueil</a></li>
+        <li><a href="<%= root_path %>">Accueil</a></li>
         <li><a href="/community">Communauté</a></li>
         <li><a href="/events">Evénements</a></li>
         <li><a href="/about<%#= url_for(controller: 'static', action: 'about') %>">A propos</a></li>
@@ -21,26 +21,29 @@
 
       <!--Sign In Form-->
       <ul class="nav navbar-nav navbar-right">
-        {{#if currentUser}}
-        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          Bienvenue, {{currentUser.username}}
-          <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="portfolio.html">Profile</a></li>
-            <li><a class='logout' href="#">Logout</a></li>
-          </ul>
-        </li>
-        {{ else }}
-        <li class="dropdown" id="menuLogin">
-          <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">
-            Connection
-          </a>
+        <% if user_signed_in? %>
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Bienvenue, <%= current_user.username %>
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="portfolio.html">Profile</a></li>
+                <!--<li><a class='logout' href="">Logout</a></li>-->
+                <li>
+                  <%= link_to('Logout', destroy_user_session_path, :method => :delete, class: 'logout') %>
+                </li>
+              </ul>
+            </li>
+        <% else %>
+            <li class="dropdown" id="menuLogin">
+              <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">
+                Connexion
+              </a>
 
-          <div class="dropdown-menu">
-            <%= render partial: 'devise/sessions/sign_in_form' %>
-          </div>
-        </li>
-        {{/if}}
+              <div class="dropdown-menu">
+                <%= render partial: 'devise/sessions/sign_in_form' %>
+              </div>
+            </li>
+        <% end %>
       </ul>
       <!--/Sign In Form-->
     </div>
