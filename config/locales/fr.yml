@@ -22,7 +22,29 @@ fr:
               confirmation: 'Doit être identique avec le précédent'
             terms_at:
               blank: 'Ce champ doit être remplis.'
+        event:
+          attributes:
+            name:
+              blank: 'Ce champ doit être remplis.'
+            date:
+              blank: 'Ce champ doit être remplis.'
+            description:
+              blank: 'Ce champ doit être remplis.'
 
   devise:
     failure:
       already_authenticated: 'Vous êtes connecté.'
+
+  defaults_dateformats: &defaults_dateformats
+    month_names:
+      [~, Janvier, Février, Mars, Avril, May, Juin, Juillet, Août, Septembre, Octobre, Novembre, Décembre]
+    formats:
+       default: "%d/%m/%Y"
+       short: "%d %m"
+       day: "%d"
+       month: "%B"
+       year: "%Y"
+  date:
+    <<: *defaults_dateformats
+  time:
+    <<: *defaults_dateformats

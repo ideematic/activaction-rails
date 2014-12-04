@@ -6,7 +6,7 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body data-signed-in='<%= user_signed_in?.to_s %>'>
 
 <%= render partial: 'layouts/menu' %>
 <%= render partial: 'shared/flash_messages' %>
@@ -24,7 +24,17 @@
 </div>
 
 <%= render partial: 'layouts/footer' %>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var controller = app.<%= params[:controller].gsub('/', '_') %>;
+        // bracket notation for ie (because .new is an error)
+        var action = app.<%= params[:controller].gsub('/', '_') %>['<%= params[:action] %>'];
 
+        if (app != undefined) app.init();
+        if (controller != undefined) controller.init();
+        if (action != undefined) action.init();
+    });
+</script>
 
 </body>
 </html>

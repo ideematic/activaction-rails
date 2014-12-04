@@ -1,0 +1,5 @@
+app.static = {
+  init: function () {
+
+  }
+};

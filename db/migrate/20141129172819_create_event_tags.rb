@@ -1,8 +1,8 @@
 class CreateEventTags < ActiveRecord::Migration
   def change
     create_table :event_tags do |t|
-      t.string :event_id
-      t.string :tag_id
+      t.integer :event_id
+      t.integer :tag_id
 
       t.timestamps
     end

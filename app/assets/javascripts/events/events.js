@@ -1,0 +1,4 @@
+app.events = {
+  init: function () {
+  }
+};

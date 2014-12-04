@@ -1238,7 +1238,7 @@ ul.command-list li small:before {
 }
 .blog-header {
 	position: relative;
-	padding-left: 115px;
+	padding-left: 121px;
 }
 .container.frontend .blog-post .page-header {
 	padding: 0 0 15px;
@@ -1256,13 +1256,14 @@ ul.command-list li small:before {
 }
 .blog-date span {
 	display: block;
-	letter-spacing: 5px;
+	letter-spacing: 4px;
 	text-transform: uppercase;
 }
 .blog-date span.day {
 	font-size: 5em;
 	letter-spacing: -5px;
 	line-height: .8em;
+    margin-left: -10px;
 }
 .blog-info {
 	text-transform: uppercase;

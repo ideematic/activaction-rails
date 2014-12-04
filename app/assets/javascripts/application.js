@@ -13,8 +13,3 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-
-$(document).on('submit', '#login_form', function(e) {
-}).on('ajax:success', '#login_form', function(e, data, status, xhr) {
-}).on('ajax:error', '#login_form', function(e, data, status, xhr) {
-});

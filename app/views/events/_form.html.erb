@@ -1,0 +1,148 @@
+<div class="row">
+  <div class="col-md-8">
+<h1><%= @event.new_record? ? 'Nouvel' : 'Modifier l\'' %> évènement</h1>
+  </div>
+  <div class="col-md-4">
+    <a href="<%= url_for event_path @event %>" class="btn btn-info pull-right" style="margin-top: 10px">
+      <i class="fa fa-arrow-circle-left"></i> Retour à l'évènement
+    </a>
+  </div>
+</div>
+<% if user_signed_in? %>
+
+    <div class="inner-spacer" role="content">
+
+      <%= form_for(@event, url: event_path(@event), html: {class: 'orb-form event-form'}) do |f| %>
+          <!--<form id="eventCreateForm" class="orb-form" novalidate="novalidate">-->
+          <!--html: {multipart: true}-->
+
+          <fieldset>
+            <section>
+              <%= f.label :name, class: "input #{'state-error' if !@event.errors[:name].blank?}" do %>
+                  <!--<i class="icon-append fa fa-user"></i>-->
+                  <%= f.text_field :name, placeholder: 'Nom de l\'évènement' %>
+                  <!--value: @params[:user] && @params[:user][:username]-->
+                  <!--<b class="tooltip tooltip-bottom-right">Le pseudo est requis.</b>-->
+              <% end %>
+              <% if !@event.errors[:name].blank? %>
+                  <em class="invalid"><%= @event.errors[:name].join %></em>
+              <% end %>
+            </section>
+
+            <!---------------->
+            <section>
+              <label class="label">Type de l'évènement</label>
+              <%= f.label :category_id, class: "select #{'state-error' if !@event.errors[:category_id].blank?}" do %>
+                  <%= f.select :category_id, Category.all.map{|c| [c.name, c.id]} %>
+                  <i></i>
+              <% end %>
+              <% if !@event.errors[:category_id].blank? %>
+                  <em class="invalid"><%= @event.errors[:category_id].join %></em>
+              <% end %>
+            </section>
+            <!--<section>-->
+              <!--<label class="label">Select</label>-->
+              <!--<label class="select">-->
+                <!--<select>-->
+                  <!--<option value="0">Choose name</option>-->
+                  <!--<option value="1">Alexandra</option>-->
+                  <!--<option value="2">Alice</option>-->
+                  <!--<option value="3">Anastasia</option>-->
+                  <!--<option value="4">Avelina</option>-->
+                <!--</select>-->
+                <!--<i></i> </label>-->
+            <!--</section>-->
+            <!---------------------->
+            <!--<section>-->
+            <!--<label class="label">Nom de l'évènement</label>-->
+            <!--<label class="input"> <i class="icon-append fa fa-calendar"></i>-->
+            <!--<label class="input">-->
+            <!--<input type="text" name="name" placeholder="Nom de l'évènement" required="" maxlength="255" class="form-control">-->
+            <!--</label>-->
+
+            <!--</label>-->
+            <!--</section>-->
+          </fieldset>
+          <fieldset>
+            <div class="row">
+              <section class="col col-6">
+
+                <label class="label">Date</label>
+                <%= f.label :date, class: "input #{'state-error' if !@event.errors[:date].blank?}" do %>
+                    <i class="icon-append fa fa-calendar"></i>
+                    <%= f.text_field :date, placeholder: 'dd/mm/yyyy', id: 'datepicker', value: @event.date_formatted %>
+                    <!--value: @params[:user] && @params[:user][:username]-->
+                <% end %>
+                <% if !@event.errors[:date].blank? %>
+                    <em class="invalid"><%= @event.errors[:date].join %></em>
+                <% end %>
+
+                <!--<label class="label">Date</label>-->
+                <!--<label class="input"> <i class="icon-append fa fa-calendar"></i>-->
+                <!--<input type="text" id="datepicker" name="date" placeholder="dd/mm/yyyy" required="" class="form-control">-->
+                <!--</label>-->
+              </section>
+
+              <section class="col col-6">
+                <label class="label">Heure</label>
+                <label class="input"> <i class="icon-append fa fa-clock-o"></i>
+                  <input type="text" name="event[hour]" placeholder="__h__" maxlength="255" class="form-control hour"
+                         value="<%= @event.hour_formatted %>">
+                </label>
+              </section>
+            </div>
+
+            <section>
+              <label class="label">Tags <span style="text-transform: none"> - séparés par ;</span></label>
+              <label class="input"> <i class="icon-append fa fa-tags"></i>
+                <input type="text" name="event[tags]" placeholder="tag1;tag2"
+                       value="<%= @event.tags.map(&:name).join(';') %>">
+                <!--<b class="tooltip tooltip-bottom-right">Needed to enter the website</b> -->
+              </label>
+            </section>
+
+          </fieldset>
+
+          <fieldset>
+
+            <section>
+              <%= f.label :description, class: "textarea #{'state-error' if !@event.errors[:description].blank?}" do %>
+                  <!--<i class="icon-append fa fa-user"></i>-->
+                  <%= f.text_area :description, placeholder: 'Description...', rows: 4 %>
+                  <!--value: @params[:user] && @params[:user][:username]-->
+                  <!--<b class="tooltip tooltip-bottom-right">Le pseudo est requis.</b>-->
+              <% end %>
+              <% if !@event.errors[:description].blank? %>
+                  <em class="invalid"><%= @event.errors[:description].join %></em>
+              <% end %>
+            </section>
+
+            <!--<input type="text" name="picture" placeholder="picture" data-schema-key="picture" maxlength="1024" class="form-control">-->
+            <div class="row">
+              <section class="col col-6">
+                <label class="label">Image</label>
+                <label for="file" class="input input-file">
+                  <!--<div class="button">-->
+                  <!--&lt;!&ndash;<input type="file" id="file">&ndash;&gt;-->
+                  <!---->
+                  <!--Choisir-->
+                  <!--</div>-->
+                  <%= f.file_field :picture %>
+                  <!--<input type="text" readonly="">-->
+                </label>
+              </section>
+            </div>
+          </fieldset>
+
+          <button type="submit" class="btn btn-lg btn-default">
+            <%= @event.new_record? ? 'Créer' : 'Modifier' %>  l'évènement
+          </button>
+
+
+          <!--</form>-->
+      <% end %>
+    </div>
+<% else %>
+    <p class="alert alert-warning">Vous devez être connecté pour créer un évènement</p>
+<% end %>
+
