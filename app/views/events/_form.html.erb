@@ -108,7 +108,7 @@
             <section>
               <%= f.label :description, class: "textarea #{'state-error' if !@event.errors[:description].blank?}" do %>
                   <!--<i class="icon-append fa fa-user"></i>-->
-                  <%= f.text_area :description, placeholder: 'Description...', rows: 4 %>
+                  <%= f.text_area :description, placeholder: 'Description...', rows: 8 %>
                   <!--value: @params[:user] && @params[:user][:username]-->
                   <!--<b class="tooltip tooltip-bottom-right">Le pseudo est requis.</b>-->
               <% end %>

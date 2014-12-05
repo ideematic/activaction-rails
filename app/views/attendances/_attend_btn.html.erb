@@ -1,0 +1,7 @@
+<a href="#" class="btn btn-<%= attending_class %> btn-event pull-right attend-btn" style="margin-left: 8px"
+   data-url="<%= attendances_path %>" data-event-id="<%= @event.id %>">
+  <i class="fa <%= attending_icon %>"></i> <%= attending_text %>
+  <% if current_user && current_user.attending_to?(@event) %>
+      <i class="fa fa-times-circle attend-btn-cancel" title="Annuler ma participation"></i>
+  <% end %>
+</a>

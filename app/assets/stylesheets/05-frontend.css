@@ -1270,7 +1270,7 @@ ul.command-list li small:before {
 	font-size: .75em;
 	font-weight: 700;
 	padding: 0;
-	margin-bottom: 15px;
+	margin-bottom: 10px;
 	letter-spacing: 1px;
 }
 .blog-post .main-blog-img {
@@ -1465,7 +1465,7 @@ ul.command-list li small:before {
 	padding-top: 0;
 }
 .main-page-blog-posts .blog-header {
-	padding-left: 85px;
+	padding-left: 109px;
 	margin-top: 20px;
 }
 .main-page-blog-posts .page-header h3 {

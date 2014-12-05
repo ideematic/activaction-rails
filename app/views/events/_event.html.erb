@@ -1,0 +1,22 @@
+<div class="col-md-4 col-sm-6">
+  <div class="blog-post-short" style="min-height: 342px;"><a href="<%= event_path event %>">
+    <%#= image_tag @event.picture_url(:thumb_270_180).to_s, class: 'img-responsive' %>
+    <img class="img-responsive"
+         src="<%= image_url event.picture_url(:thumb_270_180).to_s %>"
+         alt="blog"/></a>
+
+    <div class="blog-header">
+      <!--Big Date-->
+      <div class="blog-date"><span class="month"><%= event.date ? l(event.date, format: :month) : '?' %></span>
+        <span class="day"><%= event.date ? l(event.date, format: :day) : '?' %></span>
+        <span class="year"><%= event.date ? l(event.date, format: :year) : '2015' %></span>
+      </div>
+      <!--/Big Date-->
+      <div class="page-header">
+        <h3><a href="<%= event_path event %>"><%= event.name.capitalize %></a></h3>
+      </div>
+      <div class="blog-info clearfix"><a href="#"><%= event.category.name %></a>
+        Crée par: <a href="<%= event_path event %>"><%= event.user.username.capitalize %></a></div>
+    </div>
+  </div>
+</div>

@@ -13,15 +13,16 @@
         <h1><%= @event.name.capitalize %></h1>
       </div>
       <div class="col-md-5">
-        <a href="http://google.com" class="btn btn-default pull-right" style="margin-left: 8px">
-          <i class="fa fa-arrow-down"></i> Rejoindre
-        </a>
-        <a href="<%= url_for edit_event_path(@event) %>" class="btn btn-info pull-right" style="margin-left: 8px">
-          <i class="fa fa-pencil"></i> Modifier
-        </a>
-        <a href="http://google.com" class="btn btn-danger pull-right">
-          <i class="fa fa-times"></i> Supprimer
-        </a>
+        <%= render partial: 'attendances/attend_btn' %>
+        <% if user_signed_in? && current_user.owner_of?(@event) %>
+
+            <a href="<%= url_for edit_event_path(@event) %>" class="btn btn-info btn-event pull-right" style="margin-left: 8px">
+              <i class="fa fa-pencil"></i> Modifier
+            </a>
+            <!--<a href="http://google.com" class="btn btn-danger btn-event pull-right">-->
+            <!--<i class="fa fa-times"></i> Supprimer-->
+            <!--</a>-->
+        <% end %>
       </div>
     </div>
 
@@ -47,40 +48,6 @@
   <div class="dropcap"><%= @event.description[0] %></div>
   <p><%= @event.description[1..-1].gsub("\n", '<br/>').html_safe %></p>
 
-  <!--<p>Integer eget felis laoreet, feugiat dolor eu, tincidunt sapien. Donec urna sem, posuere nec eros sed,-->
-  <!--vehicula posuere dolor. Morbi dui est, varius at venenatis vel, tincidunt sit amet leo. Quisque vel lorem-->
-  <!--et elit lacinia malesuada quis sit amet lacus. Nullam ornare nisl sed ornare vehicula. Donec scelerisque-->
-  <!--eget lorem non consectetur. Proin eget ante quis orci malesuada imperdiet luctus eu quam. Duis quis auctor-->
-  <!--ligula. </p>-->
-
-  <!--<p>Integer vulputate quam justo, sit amet ornare lacus consectetur eu. In hac habitasse platea dictumst.-->
-  <!--Nulla eros mi, ornare a sollicitudin ut, convallis quis augue. Donec a sodales mi, semper interdum magna.-->
-  <!--Integer cursus aliquam dolor ut porta. Donec blandit elit id urna elementum, sed placerat libero euismod.-->
-  <!--Proin ante nisi, pellentesque non elit egestas, scelerisque porttitor massa. Vivamus fringilla diam at sem-->
-  <!--egestas, ac tempor nulla cursus. Etiam elit nulla, aliquam at consectetur id, egestas ac libero. Duis-->
-  <!--massa leo, blandit in lectus sed, volutpat mattis lacus. Etiam placerat sed ante eget varius. Vestibulum-->
-  <!--sollicitudin sapien vel ligula lacinia, a cursus tortor euismod. Etiam ligula velit, viverra ornare-->
-  <!--consectetur vitae, tristique non sem. Donec mauris dolor, imperdiet sit amet dolor a, sollicitudin pretium-->
-  <!--dui. </p>-->
-
-  <!--<p>Nulla porta justo nec nisi suscipit, lacinia pellentesque lacus fermentum. Praesent id dolor mi. Aenean-->
-  <!--elit est, dapibus quis turpis sed, semper bibendum nisl. Vivamus dapibus vitae nibh nec adipiscing.-->
-  <!--Vestibulum facilisis vel sem non ornare. Aenean malesuada mauris eu euismod dapibus. Nunc hendrerit, dui-->
-  <!--at lobortis ultricies, dui magna adipiscing massa, nec venenatis velit velit a ligula. Pellentesque-->
-  <!--consequat, nunc eu ultrices tincidunt, sem sapien pellentesque nisl, vitae sollicitudin massa metus et-->
-  <!--dui. Etiam ac augue nec ante pulvinar hendrerit at eu urna. </p>-->
-
-  <!--<p>Nam dolor erat, feugiat bibendum dignissim sit amet, fringilla non quam.-->
-  <!--Curabitur nulla massa, rhoncus ac tempor sit amet, vehicula sit amet ipsum.-->
-  <!--Cras lacinia tortor a diam vulputate tempus. Aliquam eget leo leo, sed-->
-  <!--consectetur urna. Maecenas fringilla posuere tortor, non iaculis orci auctor-->
-  <!--nec.</p>-->
-
-  <!--<p>Donec semper hendrerit vulputate. Maecenas tristique diam id tellus eleifend-->
-  <!--id congue odio ultricies. Sed elementum, elit aliquam dictum dapibus, ipsum-->
-  <!--ante aliquam est, convallis elementum nisi leo at massa. Phasellus magna-->
-  <!--magna, aliquet quis ullamcorper id, pulvinar nec velit. Cras ut risus turpis.-->
-  <!--Praesent sed lorem ac nibh imperdiet tincidunt nec in lacus.</p>-->
 
   <div class="blog-tags padding">Tags:
     <% @event.tags.each do |t| %>
@@ -91,27 +58,53 @@
 <!-- Blog Post Ends -->
 
 <!-- Post Author -->
-<div class="blog-author"><img src="http://placehold.it/600x600" alt="Arthur" class="img-responsive"/>
-  <h4><%= @event.user.username.capitalize %></h4>
-
-  <p><%= @event.user.bio %></p>
-
-  <div class="social-buttons">
-    <ul class="social">
-      <li><a href="http://facebook.com/"><i class="entypo-facebook-circled"></i></a></li>
-      <li><a href="http://linkedin.com/"><i class="entypo-linkedin-circled"></i></a></li>
-      <li><a href="http://google.com/"><i class="entypo-gplus-circled"></i></a></li>
-      <li><a href="http://twitter.com/"><i class="entypo-twitter-circled"></i></a></li>
-      <li><a href="http://pinterest.com/"><i class="entypo-pinterest-circled"></i></a></li>
-    </ul>
+<div class="comments-block">
+  <div class="page-header">
+    <h1>Participants <span class="badge"><%= @event.attending_users.count + 1 %></span></h1>
   </div>
+  <ul class="comments-list">
+  </ul>
+
+  <div class="blog-author"><img src="http://placehold.it/600x600" alt="Arthur" class="img-responsive"/>
+
+    <p>
+      <span class="bold-text"><%= @event.user.username.capitalize %></span>
+      <span class="label bg-purple">Organisateur</span>
+    </p>
+
+    <p><%= @event.user.bio %></p>
+
+    <!--<div class="social-buttons">-->
+    <!--<ul class="social">-->
+    <!--<li><a href="http://facebook.com/"><i class="entypo-facebook-circled"></i></a></li>-->
+    <!--<li><a href="http://linkedin.com/"><i class="entypo-linkedin-circled"></i></a></li>-->
+    <!--<li><a href="http://google.com/"><i class="entypo-gplus-circled"></i></a></li>-->
+    <!--<li><a href="http://twitter.com/"><i class="entypo-twitter-circled"></i></a></li>-->
+    <!--<li><a href="http://pinterest.com/"><i class="entypo-pinterest-circled"></i></a></li>-->
+    <!--</ul>-->
+    <!--</div>-->
+  </div>
+
+  <% @event.attending_users.each do |u| %>
+      <div class="blog-author">
+        <img src="http://placehold.it/600x600" alt="Arthur" class="img-responsive"/>
+
+        <p>
+          <span class="bold-text"><%= u.username.capitalize %></span>
+          <span class="label bg-dark-blue">Participant</span>
+        </p>
+
+        <p><%= u.bio || '...' %></p>
+      </div>
+  <% end %>
+
 </div>
 <!--/Post Author-->
 
 <!-- Comments -->
 <div class="comments-block">
   <div class="page-header">
-    <h1>Comments <span class="badge">433</span></h1>
+    <h1>Commentaires <span class="badge">15</span></h1>
   </div>
   <ul class="comments-list">
     <li>
@@ -210,7 +203,7 @@
 
 <div class="add-comment padding">
   <form action="#" method="post" id="review-form" class="orb-form">
-    <header>Your comment</header>
+    <header>Ajouter un commentaire</header>
     <fieldset>
       <section>
         <label class="input"> <i class="icon-append fa fa-user"></i>

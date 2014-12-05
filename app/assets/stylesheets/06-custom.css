@@ -51,14 +51,28 @@
 .container {
     width: auto !important;
 }
+
 /*.container2 {*/
-    /*background: #fff;*/
-    /*margin-top: 0;*/
-    /*padding: 25px;*/
-    /*border-radius: 3px;*/
-    /*padding-top: 10px;*/
-    /*padding-bottom: 0;*/
+/*background: #fff;*/
+/*margin-top: 0;*/
+/*padding: 25px;*/
+/*border-radius: 3px;*/
+/*padding-top: 10px;*/
+/*padding-bottom: 0;*/
 /*}*/
 .grey {
     color: #dddddb;
+}
+
+.alert-container {
+    margin-right: 15px;
+    margin-left: 15px;
+    padding: 0
+}
+.bold-text {
+    font-weight: 700;
+    margin-top: 10px;
+    line-height: 1em;
+    text-shadow: 0 0 1px rgba(51,51,51,.2);
+    font-size: 15px;
 }

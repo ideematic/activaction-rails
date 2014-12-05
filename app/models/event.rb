@@ -3,6 +3,8 @@ class Event < ActiveRecord::Base
   belongs_to :user
   has_many :event_tags
   has_many :tags, through: :event_tags
+  has_many :attendances
+  has_many :attending_users, through: :attendances, source: :user
 
   validates_presence_of :user_id, :name, :description
 

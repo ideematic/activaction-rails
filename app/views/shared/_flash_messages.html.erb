@@ -7,7 +7,7 @@
                   error: 'alert-error'}
 %>
 <% if flash[:notice] || flash[:alert] || flash[:info] || flash[:success] || flash[:error] %>
-    <div class="panel panel-default container">
+    <div class="panel panel-default container alert-container">
       <div class="panel-body">
         <% flash_types.each do |type, klass| %>
             <% if flash && flash[type] %>
