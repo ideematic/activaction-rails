@@ -37,15 +37,15 @@ ActivactionRails::Application.routes.draw do
   #
   # end
 
-  resources :events do
-
-  end
+  resources :events
 
   resources :attendances do
     collection do
       delete :destroy # we pass the event_id to destroy an attendance, not in the url. So defined on collection
     end
   end
+
+  resources :comments
 
   #chat
   #wiki

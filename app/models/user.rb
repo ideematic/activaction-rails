@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :events
   has_many :attendances
   has_many :attended_events, through: :attendances, source: :event
+  has_many :comments
 
   STATUSES = [:accepted, :refused, :pending]
   # Include default devise modules. Others available are:
@@ -28,7 +29,7 @@ class User < ActiveRecord::Base
     !self.attending_status(event).nil?
   end
 
-  def owner_of?(event)
-    self.id == event.user_id
+  def owner_of?(ownable) # event or comment
+    self.id == ownable.user_id
   end
 end

@@ -26,4 +26,8 @@ class Event < ActiveRecord::Base
   def hour_formatted
     date && date.strftime('%Hh%M')
   end
+
+  def owned_by?(user)
+    user.owner_of?(self)
+  end
 end

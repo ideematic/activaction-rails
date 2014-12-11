@@ -41,7 +41,7 @@ fr:
     formats:
        default: "%d/%m/%Y"
        short: "%d %m"
-       long: "%d/%m/%Y"
+       long: "%d %B %Y, à %Hh%M"
        day: "%d"
        month: "%B"
        year: "%Y"

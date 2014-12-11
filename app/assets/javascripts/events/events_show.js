@@ -3,6 +3,7 @@ app.events.show = {
     var self = this;
     self.initAttendBtn();
     self.initAttendCancelBtn();
+    self.initCommentEdit()
   },
 
   initAttendBtn: function () {
@@ -66,6 +67,12 @@ app.events.show = {
         }
       });
       return false;
+    });
+  },
+
+  initCommentEdit: function() {
+    $('.edit-comment').click(function() {
+      alert('Ce qui est dit est dit. Impossible de modifier le commentaire.')
     });
   }
 };

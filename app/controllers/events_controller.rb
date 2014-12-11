@@ -9,7 +9,8 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
+    @event = Event.includes(:category, :user, :tags, :attendances, :attending_users, :comments).
+      find(params[:id])
     if request.path != event_path(@event)
       redirect_to @event, status: :moved_permanently
       return

@@ -15,4 +15,8 @@ class ApplicationController < ActionController::Base
       redirect_to new_user_session_path
     end
   end
+
+  def authenticate_user!
+    redirect_to new_user_registration_url unless user_signed_in?
+  end
 end
