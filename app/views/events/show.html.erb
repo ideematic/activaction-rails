@@ -125,7 +125,8 @@
                   <div class="comments-info">
                     Le <%= l comment.updated_at, format: :long %>
                     <% if current_user && current_user.owner_of?(comment) %>
-                        <button class="btn btn-info btn-sm pull-right edit-comment"><i class="fa fa-reply"></i> Modifier</button>
+                        <button class="btn btn-info btn-sm pull-right edit-comment"><i class="fa fa-reply"></i> Modifier
+                        </button>
                     <% end %>
                   </div>
                 </div>
@@ -177,7 +178,12 @@
               <p>Your comment was successfully sent!</p>
             </div>
         <% else %>
+            <br/>
 
+            <div class="alert alert-warning">Vous devez
+              <a href="<%= new_user_registration_path %>">créer un compte</a> ou
+              <a href="<%= new_user_session_path %>">vous connecter</a> pour écrire un commenaire.
+            </div>
         <% end %>
     <% end %>
     <!--</form>-->

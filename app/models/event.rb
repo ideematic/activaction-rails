@@ -30,4 +30,8 @@ class Event < ActiveRecord::Base
   def owned_by?(user)
     user.owner_of?(self)
   end
+
+  def to_param
+    "#{id} #{name}".parameterize
+  end
 end

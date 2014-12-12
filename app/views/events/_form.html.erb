@@ -1,18 +1,20 @@
 <div class="row">
   <div class="col-md-8">
-<h1><%= @event.new_record? ? 'Nouvel' : 'Modifier l\'' %> évènement</h1>
+    <h1><%= @event.new_record? ? 'Nouvel' : 'Modifier l\'' %> évènement</h1>
   </div>
-  <div class="col-md-4">
-    <a href="<%= url_for event_path @event %>" class="btn btn-info pull-right" style="margin-top: 10px">
-      <i class="fa fa-arrow-circle-left"></i> Retour à l'évènement
-    </a>
-  </div>
+  <% if !@event.new_record? %>
+      <div class="col-md-4">
+        <a href="<%= url_for event_path @event %>" class="btn btn-info pull-right" style="margin-top: 10px">
+          <i class="fa fa-arrow-circle-left"></i> Retour à l'évènement
+        </a>
+      </div>
+  <% end %>
 </div>
 <% if user_signed_in? %>
 
     <div class="inner-spacer" role="content">
 
-      <%= form_for(@event, url: event_path(@event), html: {class: 'orb-form event-form'}) do |f| %>
+      <%= form_for(@event, html: {class: 'orb-form event-form'}) do |f| %>
           <!--<form id="eventCreateForm" class="orb-form" novalidate="novalidate">-->
           <!--html: {multipart: true}-->
 
@@ -33,7 +35,7 @@
             <section>
               <label class="label">Type de l'évènement</label>
               <%= f.label :category_id, class: "select #{'state-error' if !@event.errors[:category_id].blank?}" do %>
-                  <%= f.select :category_id, Category.all.map{|c| [c.name, c.id]} %>
+                  <%= f.select :category_id, Category.all.map { |c| [c.name, c.id] } %>
                   <i></i>
               <% end %>
               <% if !@event.errors[:category_id].blank? %>
@@ -41,16 +43,16 @@
               <% end %>
             </section>
             <!--<section>-->
-              <!--<label class="label">Select</label>-->
-              <!--<label class="select">-->
-                <!--<select>-->
-                  <!--<option value="0">Choose name</option>-->
-                  <!--<option value="1">Alexandra</option>-->
-                  <!--<option value="2">Alice</option>-->
-                  <!--<option value="3">Anastasia</option>-->
-                  <!--<option value="4">Avelina</option>-->
-                <!--</select>-->
-                <!--<i></i> </label>-->
+            <!--<label class="label">Select</label>-->
+            <!--<label class="select">-->
+            <!--<select>-->
+            <!--<option value="0">Choose name</option>-->
+            <!--<option value="1">Alexandra</option>-->
+            <!--<option value="2">Alice</option>-->
+            <!--<option value="3">Anastasia</option>-->
+            <!--<option value="4">Avelina</option>-->
+            <!--</select>-->
+            <!--<i></i> </label>-->
             <!--</section>-->
             <!---------------------->
             <!--<section>-->
