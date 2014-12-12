@@ -13,6 +13,31 @@ ActivactionRails::Application.routes.draw do
                :unlock => 'unblock',
                :registration => 'register',
                :sign_up => 'new', :sign_out => 'logout'}
+
+  root 'static#landing'
+  get '/about' => 'static#about'
+  get '/register' => redirect('/register/new')
+
+  resources :events
+
+  resources :attendances do
+    collection do
+      delete :destroy # we pass the event_id to destroy an attendance, not in the url. So defined on collection
+    end
+  end
+
+  resources :comments
+
+  resources :wiki_pages
+
+  get '/wiki' => 'wiki_pages#handler'
+  get '/wiki/*url' => 'wiki_pages#handler'
+
+  #chat
+  #wiki
+  #forum
+  #activ'profil
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -27,30 +52,6 @@ ActivactionRails::Application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-
-  root 'static#landing'
-  get '/about' => 'static#about'
-  get '/register' => redirect('/register/new')
-  # 'static#homepage'
-
-  # resources :users do
-  #
-  # end
-
-  resources :events
-
-  resources :attendances do
-    collection do
-      delete :destroy # we pass the event_id to destroy an attendance, not in the url. So defined on collection
-    end
-  end
-
-  resources :comments
-
-  #chat
-  #wiki
-  #forum
-  #activ'prodil
 
   # Example resource route with options:
   #   resources :products do

@@ -1,0 +1,24 @@
+<h1>Créer une nouvelle page wiki</h1>
+
+<p class="alert alert-info">La page <%= @url %> n'existe pas</p>
+
+<%= form_for WikiPage.new, html: {class: 'form-horizontal'} do |f| %>
+    <!--<header>Ajouter un commentaire</header>-->
+
+    <div class="form-group">
+      <!--<label class="col-md-1 control-label" for="prependedtext">Url:</label>-->
+
+      <div class="col-md-12">
+        <div class="input-group"><span class="input-group-addon">http://activaction.com/wiki/</span>
+          <!--<input id="prependedtext" name="prependedtext" class="form-control" placeholder="placeholder" type="text">-->
+          <%= f.text_field :url, value: @url, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <%= button_tag(type: 'submit', class: 'btn btn-lg btn-default') do %>
+          <i class="fa fa-plus-circle"></i> Créer
+      <% end %>
+    </footer>
+<% end %>

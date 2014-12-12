@@ -12,4 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require_directory .
+//= require_directory ./events
+//= require_directory ./static
+//= require_directory ./vendor
+

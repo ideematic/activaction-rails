@@ -2,12 +2,20 @@
 <html>
 <head>
   <title>ActivactionRails</title>
-  <%= stylesheet_link_tag "application", media: "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
-</head>
-<body data-signed-in='<%= user_signed_in?.to_s %>'>
 
+  <% if admin? %>
+      <link rel="stylesheet" href="/aloha/css/aloha.css" type="text/css">
+      <script src="/aloha/lib/require.js"></script>
+      <script src="/aloha/lib/vendor/jquery-1.7.2.js"></script>
+      <script src="/aloha/lib/aloha.js" data-aloha-plugins="common/ui,common/format,common/table,common/list,common/highlighteditables,common/link,common/image,common/block,common/undo"></script>
+  <% end %>
+</head>
+<body data-signed-in="<%= user_signed_in?.to_s %>" data-admin="<%= admin?.to_s %>">
+
+<%= render partial: 'layouts/admin_box' %>
 <%= render partial: 'layouts/menu' %>
 <%= render partial: 'shared/flash_messages' %>
 <!--{{> chatWindow}}-->
@@ -26,9 +34,10 @@
 <%= render partial: 'layouts/footer' %>
 <script type="text/javascript">
     $(document).ready(function () {
-        var controller = app.<%= params[:controller].gsub('/', '_') %>;
+        <% controller_js = params[:controller].gsub('/', '_') %>
+        var controller = app.<%= controller_js %>;
         // bracket notation for ie (because .new is an error)
-        var action = app.<%= params[:controller].gsub('/', '_') %>['<%= params[:action] %>'];
+        var action = app.<%= controller_js %> && app.<%= controller_js %>['<%= params[:action] %>'];
 
         if (app != undefined) app.init();
         if (controller != undefined) controller.init();

@@ -12,4 +12,8 @@ module ApplicationHelper
     @devise_mapping ||= Devise.mappings[:user]
   end
 
+  def admin?
+    current_user && current_user.is_admin
+  end
+
 end
