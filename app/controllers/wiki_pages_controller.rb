@@ -3,7 +3,6 @@ class WikiPagesController < ApplicationController
   protect_from_forgery :except => [:update]
 
   def handler
-    #binding.pry
     @url = params[:url] || ''
     @wiki_page = WikiPage.find_by_url @url
 
@@ -16,7 +15,12 @@ class WikiPagesController < ApplicationController
         raise ActionController::RoutingError.new('Not Found')
       end
     else
-      render template: 'wiki_pages/page'
+      if !@wiki_page.public && !user_signed_in?
+        session[:my_return_to] = "/wiki/#{@wiki_page.url}"
+        redirect_to new_user_session_path, flash: {error: 'Vous devez vous connecter pour voir cette page.'}
+      else
+        render template: 'wiki_pages/page'
+      end
     end
   end
 
@@ -35,6 +39,6 @@ class WikiPagesController < ApplicationController
   private
 
   def wiki_page_params
-    params.require(:wiki_page).permit(:url, :content)
+    params.require(:wiki_page).permit(:url, :content, :public)
   end
 end

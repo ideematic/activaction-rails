@@ -1,5 +1,21 @@
+<div class="onlyadmin border">
+  Infos admin:
+  <ul>
+    <li>Tous les liens vers les pages wiki doivent commencer par /wiki. Par exemple:
+      /wiki/astuces-contre-la-depression
+    </li>
+    <li>Pour créer une nouvelle page, commencer par créer le lien ici. Puis cliquer visu "Normal" en bas à droite,
+      puis cliquer le lien
+    </li>
+  </ul>
+
+</div>
+
 <div class="container frontend">
   <div class="editable" data-page-id="<%= @wiki_page.id %>">
     <%= @wiki_page.content && @wiki_page.content.html_safe %>
   </div>
+  <%= render partial: 'comments/comments', locals: {commentable: @wiki_page} %>
 </div>
+
+

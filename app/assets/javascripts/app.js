@@ -88,6 +88,7 @@ var app = {
       $(this).addClass('active');
       $('#normal_preview').removeClass('active');
       app.initAloha();
+      $('body').attr('data-admin', true);
 //      $('body').addClass('admin');
 //      $('#my_wmd, .wmd-button-bar, #edit_page .form-actions, .ace_editor').show();
 //      $('.wmd-preview2').addClass('wmd-preview').removeClass('wmd-preview2');
@@ -99,6 +100,7 @@ var app = {
       $('.editable').mahalo();
       $('.editable').removeClass('aloha-editable');
       $('.editable').removeClass('aloha-editable-highlight');
+      $('body').attr('data-admin', false);
 //      $('a').removeClass('aloha-link-text');
 //      $('body').removeClass('admin');
 //      $('#my_wmd, .wmd-button-bar, #edit_page .form-actions, .ace_editor').hide();

@@ -6,6 +6,8 @@
           </button>
           <%= flash[:error] || flash[:alert] %>
         </div>
+        <% # if flash message is displayed in devise sign in form, don't display elsewhere %>
+        <% flash[:error] = flash[:errors] = flash[:notice] = nil %>
     <% end %>
     <fieldset>
       <section>
