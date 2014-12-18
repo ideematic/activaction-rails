@@ -54,6 +54,12 @@
           <a href="#" rel="tag"><%= t.name %></a>
       <% end %>
     </div>
+
+    <div class="blog-tags padding">Compétences
+      <% @event.skills.each do |s| %>
+          <a href="#" rel="tag"><%= s.name %></a>
+      <% end %>
+    </div>
   </div>
   <!-- Blog Post Ends -->
 

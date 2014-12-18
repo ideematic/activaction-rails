@@ -5,7 +5,7 @@
   <div>
     <div class="main-page-blog-posts block">
       <h2 class="h2_home" style="color: white;">
-        Tous les Activ'Boosts
+        Tous les Evènements
       </h2>
       <% Event.all.each do |e| %>
           <%= render partial: 'events/event', locals: {event: e} %>

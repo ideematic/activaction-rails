@@ -3,6 +3,8 @@ class Event < ActiveRecord::Base
   belongs_to :user
   has_many :event_tags
   has_many :tags, through: :event_tags
+  has_many :event_skills
+  has_many :skills, through: :event_skills
   has_many :attendances
   has_many :attending_users, through: :attendances, source: :user
   has_many :comments, as: :commentable
@@ -16,6 +18,14 @@ class Event < ActiveRecord::Base
     tags.split(';').each do |t|
       new_tag = Tag.where(name: t).first_or_create
       EventTag.where(tag_id: new_tag.id, event_id: self.id).first_or_create
+    end
+  end
+
+  def skills=(skills)
+    EventSkill.where(event_id: self.id).delete_all
+    skills.split(';').each do |t|
+      new_skill = Skill.where(name: t).first_or_create
+      EventSkill.where(skill_id: new_skill.id, event_id: self.id).first_or_create
     end
   end
 

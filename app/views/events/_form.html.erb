@@ -103,6 +103,15 @@
               </label>
             </section>
 
+            <section>
+              <label class="label">Compétences <span style="text-transform: none"> - séparées par ;</span></label>
+              <label class="input"> <i class="icon-append fa fa-tags"></i>
+                <input type="text" name="event[skills]" placeholder="compétence1;compétence2"
+                       value="<%= @event.skills.map(&:name).join(';') %>">
+                <!--<b class="tooltip tooltip-bottom-right">Needed to enter the website</b> -->
+              </label>
+            </section>
+
           </fieldset>
 
           <fieldset>

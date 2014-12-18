@@ -16,19 +16,18 @@ ActivactionRails::Application.routes.draw do
 
   root 'static#landing'
   get '/about' => 'static#about'
+  get '/community' => 'users#index'
   get '/register' => redirect('/register/new')
 
   resources :events
-
+  resources :comments
+  resources :wiki_pages
+  resources :users
   resources :attendances do
     collection do
       delete :destroy # we pass the event_id to destroy an attendance, not in the url. So defined on collection
     end
   end
-
-  resources :comments
-
-  resources :wiki_pages
 
   get '/wiki' => 'wiki_pages#handler'
   get '/wiki/*url' => 'wiki_pages#handler'

@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :events
+  has_many :events # organized_events
   has_many :attendances
   has_many :attended_events, through: :attendances, source: :event
   has_many :comments
