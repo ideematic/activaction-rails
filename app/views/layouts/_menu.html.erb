@@ -27,7 +27,7 @@
               Bienvenue, <%= current_user.username %>
               <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="portfolio.html">Profile</a></li>
+                <li><a href="<%= user_path current_user %>">Profile</a></li>
                 <!--<li><a class='logout' href="">Logout</a></li>-->
                 <li>
                   <%= link_to('Logout', destroy_user_session_path, class: 'logout') %>
