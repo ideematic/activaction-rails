@@ -2,18 +2,19 @@ var app = {
   init: function () {
     var self = this;
     self.initSignIn();
+    self.initChat();
     if (self.isAdmin()) {
       self.initAloha();
       self.initAdminBox();
     }
   },
 
-  isAdmin: function() {
+  isAdmin: function () {
     return $('body').data('admin');
   },
 
   flash: function (type, message, prependTo) {
-    $('.alert').remove();
+    $('.alert-container').remove();
     //$("html, body").animate({ scrollTop: 0 }, 'fast');
     if (type == 'notice') {
       type = 'success';
@@ -43,7 +44,7 @@ var app = {
     });
   },
 
-  initAloha: function() {
+  initAloha: function () {
 
     Aloha.ready(function () {
       Aloha.jQuery('.editable').aloha();
@@ -70,10 +71,10 @@ var app = {
             success: function () {
               app.flash('success', 'Modifications enregistrées');
             },
-            failure: function() {
+            failure: function () {
               app.flash('error', "Impossible d'enregistrer les modifications (1)");
             },
-            error: function() {
+            error: function () {
               app.flash('error', "Impossible d'enregistrer les modifications (2)");
             }
           });
@@ -83,7 +84,7 @@ var app = {
     });
   },
 
-  initAdminBox: function() {
+  initAdminBox: function () {
     $('#admin_preview').click(function () {
       $(this).addClass('active');
       $('#normal_preview').removeClass('active');
@@ -107,17 +108,72 @@ var app = {
 //      $('.wmd-preview').removeClass('wmd-preview').addClass('wmd-preview2');
 //      $('#editor_preview').removeClass('boxed');
     });
-    $('#admin_expand').click(function() {
+    $('#admin_expand').click(function () {
       $('.admin_box').css('max-height', '3000px');
       $('.admin_box').css('width', '500px');
       $(this).hide();
       $('#admin_collapse').show();
     });
-    $('#admin_collapse').click(function() {
+    $('#admin_collapse').click(function () {
       $('.admin_box').css('max-height', '75px');
       $('.admin_box').css('width', '200px');
       $(this).hide();
       $('#admin_expand').show();
+    });
+  },
+
+  initChat: function () {
+    window.client = new Faye.Client('/faye');
+    client.subscribe('/chat', function (payload) {
+      if (payload.message) {
+        console.log('new message', payload.message);
+        //$('#comments').find('.media-list').prepend(payload.message)
+      }
+    });
+
+    $('.user-menu-item').click(function () {
+      if (!app.user_signed_in()) {
+        app.flash('error', 'You devez vous connecter pour chatter avec un autre membre.');
+        return false;
+      }
+//      Template.userMenu.refeshCount(this);
+//      Meteor.subscribe('messages', Meteor.user().chattingWith);
+//      Meteor.setTimeout(function () {
+//        Template.chatWindow.scrollDown();
+//      }, 0);
+      $('.chat-window').show();
+      $('body').not('.login').click(function (e) {
+        if (!$(e.target).closest('.chat-window').length && !$(e.target).closest('.user-menu-item').length) {
+          $('.chat-window').hide();
+        }
+      });
+      $('.chat-box').keypress(function (e) {
+        if (e.which === 13) { // enter
+          e.preventDefault();
+//          Template.chatWindow.sendMessage();
+          return false;
+        }
+        return true;
+      });
+      $('.chat-box').blur(function () {
+        console.log('chat blurr1');
+        return true;
+      });
+      $('.chat-box').focus(function () {
+        console.log('chat blurr1');
+//        Template.userMenu.refeshCount(User.collection.findOne({_id: Meteor.user().chattingWith}));
+        return true;
+      });
+      $('.chat-button').click(function (e) {
+        e.preventDefault();
+//        Template.chatWindow.sendMessage();
+        return false;
+      });
+      $('.close-window').click(function (e) {
+        e.preventDefault();
+        $('.chat-window').hide();
+        return false;
+      });
     });
   }
 };

@@ -13,10 +13,10 @@
       </div>
       <!--/Big Date-->
       <div class="page-header">
-        <h3><a href="<%= event_path event %>"><%= event.name.capitalize %></a></h3>
+        <h3><a href="<%= event_path event %>"><%= event.name.uc_first %></a></h3>
       </div>
       <div class="blog-info clearfix"><a href="#"><%= event.category.name %></a>
-        Crée par: <a href="<%= event_path event %>"><%= event.user.username.capitalize %></a></div>
+        Crée par: <a href="<%= event_path event %>"><%= event.user.username.uc_first %></a></div>
     </div>
   </div>
 </div>

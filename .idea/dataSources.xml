@@ -4,7 +4,25 @@
     <data-source source="LOCAL" name="Rails activaction-rails: development" uuid="b3b80e29-ed42-4d81-9c32-6f777783dd4c">
       <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql:db/development.sqlite3</jdbc-url>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/activaction_dev</jdbc-url>
+      <user-name>postgres</user-name>
+      <user-password>dfd9dfcfdfd8dfcddfdedfd9dfc5dfda</user-password>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails activaction-rails: production" uuid="ebd50803-fcd5-4a6a-9207-886d9fb2b8b0">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/activaction_prod</jdbc-url>
+      <user-name>postgres</user-name>
+      <user-password>dfd9dfcfdfd8dfcddfdedfd9dfc5dfda</user-password>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails activaction-rails: test" uuid="49799c62-df69-42b5-ada9-ac7aeb1c3490">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/activaction_test</jdbc-url>
+      <user-name>postgres</user-name>
+      <user-password>dfd9dfcfdfd8dfcddfdedfd9dfc5dfda</user-password>
       <libraries />
     </data-source>
   </component>

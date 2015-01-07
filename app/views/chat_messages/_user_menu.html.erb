@@ -1,0 +1,22 @@
+<div class="tabs-offcanvas">
+  <ul class="nav nav-tabs nav-justified">
+    <!--<li><a href="#userbar-one" data-toggle="tab">Main</a></li>-->
+    <li class="active"><a href="#userbar-two" data-toggle="tab">Membres</a></li>
+    <!--<li><a href="#userbar-three" data-toggle="tab">ToDo</a></li>-->
+  </ul>
+  <div class="tab-content" style="background-color: #33383d;">
+    <div class="tab-pane active" id="userbar-two" style="background: rgba(255,255,255,.1);">
+      <div class="chat-users-menu">
+        <ul>
+          <% User.all.each do |user| %>
+              <li class="user-menu-item">
+                <a href="#"><span class="chat-name"><%= user.username.uc_first %></span><span class="user-img"><img
+                src="http://placehold.it/150x150" alt="User"/></span><span
+                class="label {{userStatus.class}}">Offline</span><span
+                class="badge">4</span></a></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

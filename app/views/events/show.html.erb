@@ -1,4 +1,4 @@
-<div class="container frontend">
+<div class="container frontend events-show">
 
   <!-- Blog Post Starts -->
   <div class="blog-post">
@@ -10,7 +10,7 @@
       <!--/Big Date-->
       <div class="row page-header">
         <div class="col-md-7">
-          <h1><%= @event.name.capitalize %></h1>
+          <h1><%= @event.name.uc_first %></h1>
         </div>
         <div class="col-md-5">
           <%= render partial: 'attendances/attend_btn' %>
@@ -23,7 +23,34 @@
               <!--<i class="fa fa-times"></i> Supprimer-->
               <!--</a>-->
           <% end %>
+
         </div>
+        <% if user_signed_in? && current_user.owner_of?(@event) %>
+            <div class="col-md-12">
+              <div class="callout callout-info">
+                <h4>Organisateur</h4>
+
+                <p>Vous êtes organisateur de cet évènement.</p>
+              </div>
+            </div>
+        <% elsif user_signed_in? && current_user.attending_to?(@event) %>
+            <div class="col-md-12">
+              <div class="callout callout-success">
+                <h4>Vous participez !</h4>
+
+                <p>Vous êtes inscrit à cet évènement. Notez la date et l'heure pour être sur de ne pas oublier.
+                  Si vous ne pouvez pas venir,
+                  <%= link_to 'cliquez ici', attendance_path(@attendance, event_id: @event.id),
+                              confirm: 'Êtes-vous sûr de vouloir annuler ?',
+                              method: :delete %>
+                  pour anuller votre participation et prévenez l'organisateur à l'avance.
+                </p>
+              </div>
+            </div>
+        <% end %>
+      </div>
+      <div class="row">
+
       </div>
 
       <div class="blog-info clearfix">
@@ -41,7 +68,7 @@
     </div>
     <!--<div class="main-blog-img"><img class="img-responsive" src="http://placehold.it/1024x768"/></div>-->
     <div class="main-blog-img">
-      <%= image_tag @event.picture_url(:thumb_1040).to_s, class: 'img-responsive' %>
+      <%= image_tag @event.picture_url(:thumb_1040).to_s, class: 'img-responsive img-left' %>
     </div>
 
 
@@ -55,7 +82,7 @@
       <% end %>
     </div>
 
-    <div class="blog-tags padding">Compétences
+    <div class="blog-tags padding">Compétences:
       <% @event.skills.each do |s| %>
           <a href="#" rel="tag"><%= s.name %></a>
       <% end %>
@@ -64,6 +91,7 @@
   <!-- Blog Post Ends -->
 
   <!-- Post Author -->
+  <div class="clearfix"></div>
   <div class="comments-block">
     <div class="page-header">
       <h1>Participants <span class="badge"><%= @event.attending_users.count + 1 %></span></h1>
@@ -73,8 +101,8 @@
 
     <div class="blog-author"><img src="http://placehold.it/600x600" alt="Arthur" class="img-responsive"/>
 
-      <p>
-        <span class="bold-text"><%= @event.user.username.capitalize %></span>
+      <p class="attendant-name">
+        <span class="bold-text"><%= @event.user.username.uc_first %></span>
         <span class="label bg-purple">Organisateur</span>
       </p>
 
@@ -96,7 +124,7 @@
           <img src="http://placehold.it/600x600" alt="Arthur" class="img-responsive"/>
 
           <p>
-            <span class="bold-text"><%= u.username.capitalize %></span>
+            <span class="bold-text"><%= u.username.uc_first %></span>
             <span class="label bg-dark-blue">Participant</span>
           </p>
 

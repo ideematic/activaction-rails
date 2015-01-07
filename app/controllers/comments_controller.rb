@@ -6,14 +6,20 @@ class CommentsController < ApplicationController
     @commentable = find_commentable
     @comment = @commentable.comments.build(comment_params)
     @comment.user_id = current_user.id
-    redirect_url = {Event: event_path(@commentable),
-                    WikiPage: "#{request.protocol}#{request.host_with_port}/wiki/#{@commentable.url}"}.
-      with_indifferent_access[comment_params[:commentable_type]]
+
+    redirect_url = ''
+    if comment_params[:commentable_type] == 'Event'
+      redirect_url = event_path(@commentable)
+    end
+    if comment_params[:commentable_type] == 'WikiPage'
+      redirect_url = "#{request.protocol}#{request.host_with_port}/wiki/#{@commentable.url}"
+    end
+
     if @comment.save
       redirect_to redirect_url, flash: {notice: 'Commentaire ajouté'}
     else
       redirect_to redirect_url, flash:
-        {error: "Impossible d'ajouter le commentaire: #{@comment.errors.join(',')}"}
+          {error: "Impossible d'ajouter le commentaire: #{@comment.errors.join(',')}"}
     end
     # respond_to do |format|
     #   format.html { render layout: false }

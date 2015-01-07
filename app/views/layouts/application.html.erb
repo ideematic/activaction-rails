@@ -19,7 +19,8 @@
 <%= render partial: 'layouts/menu' %>
 <%= render partial: 'shared/flash_messages' %>
 <!--{{> chatWindow}}-->
-<!--{{> userMenu}}-->
+<%= render partial: 'chat_messages/chat_window' %>
+
 <!--{{> carousel}}-->
 
 <div class="row">
@@ -27,7 +28,7 @@
     <%= yield %>
   </div>
   <div class="content-right col-md-2">
-    {{> userMenu}}
+    <%= render partial: 'chat_messages/user_menu' %>
   </div>
 </div>
 

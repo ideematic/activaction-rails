@@ -1,0 +1,15 @@
+<% users.each do |user| %>
+    <div class="col-md-4 col-sm-6">
+      <div class="tiny-user-block clearfix">
+        <div class="user-img"><img src="http://bigmedved.ru/orb/images/users/1.jpg" alt="User"></div>
+        <h3><%= user.username %></h3>
+        <ul>
+          <li>Evènements organisés: <strong><%= user.events.count %></strong></li>
+          <li>Evènements participés: <strong><%= user.attended_events.count %></strong></li>
+        </ul>
+        <!--<button class="btn btn-sm btn-success">Follow</button>-->
+        <!--<button class="btn btn-sm btn-success">Ajouter aux contacts</button>-->
+        <button class="btn btn-sm btn-warning">Chat</button>
+      </div>
+    </div>
+<% end %>

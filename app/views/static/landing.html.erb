@@ -15,12 +15,16 @@
     <!--Latest Blog-->
     <div class="main-page-blog-posts block">
       <h2 class="h2_home" style="color: white;">
-        Participez aux prochains Activ'Boosts
+        Participez aux prochains Evènements
       </h2>
       <!--Blog Post-->
-      <% Event.limit(12).all.each do |e| %>
+      <% Event.limit(9).all.each do |e| %>
           <%= render partial: 'events/event', locals: {event: e} %>
       <% end %>
+
+      <a href="/events" class="btn btn-default see-all btn-see-all">
+        > Voir tous
+      </a>
 
       <div class="clearfix"></div>
     </div>

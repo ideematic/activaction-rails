@@ -2,12 +2,29 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.blog-author {
-  padding: 25px 20px;
-  background: #dddddb;
-  margin-top: 25px;
-  margin-bottom: 0;
-}
-.blog-author img {
-  width: 80px;
+.events-show {
+  .blog-author {
+    padding: 15px;
+    background: #dddddb;
+    margin-top: 25px;
+    margin-bottom: 0;
+    .label {
+      font-size: 12px;
+    }
+  }
+  .blog-author img {
+    width: 30px;
+    border: none;
+  }
+  .attendant-name {
+    margin: 5px;
+  }
+
+  .callout {
+    margin: 0;
+  }
+
+  .page-header h1 {
+    margin-bottom: 10px;
+  }
 }

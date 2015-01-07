@@ -1,10 +1,14 @@
 module AttendancesHelper
   def attending_class
-    {false => 'default', true => 'success', nil => 'default'}[current_user && current_user.attending_to?(@event)]
+    {nil => 'default',
+     pending: 'success',
+     refused: 'grey',
+     admin: 'grey disabled'
+    }.with_indifferent_access[current_user && current_user.attending_status(@event)]
   end
 
   def attending_icon
-    {pending: 'fa-ellipsis-h',
+    {pending: 'fa-check', # fa-ellipsis-h
      accepted: 'fa-check',
      refused: 'fa-times',
      nil => 'fa-arrow-down'
@@ -12,9 +16,10 @@ module AttendancesHelper
   end
 
   def attending_text
-    {pending: 'En attente',
-     accepted: 'Participation acceptée',
+    {pending: 'Vous participez',
+     accepted: 'Vous participez',
      refused: 'Participation refusée',
+     admin: 'orga',
      nil => 'Rejoindre'
     }.with_indifferent_access[current_user && current_user.attending_status(@event)]
   end

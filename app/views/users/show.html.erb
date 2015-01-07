@@ -13,7 +13,7 @@
 <div class="user-profile">
 <div class="main-info">
   <div class="user-img"><img src="http://placehold.it/150x150" alt="User Picture"></div>
-  <h1><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></h1>
+  <h1><%= @user.first_name.uc_first %> <%= @user.last_name.uc_first %></h1>
   Evènements organisés: <%= @user.events.count %> | Participés: <%= @user.attended_events.count %> | Nombre de patates: 22
 </div>
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="height: 260px;background-color: #aaa">
