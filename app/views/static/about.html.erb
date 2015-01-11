@@ -3,15 +3,9 @@
 <div class="row">
 <div class="page-header">
   <h1>
-    <!--<span class="editable editable-small" data-label='about_title'>-->
-              <!--<%= Label.retrieve('about_title') %>-->
-            <!--</span>-->
-    A propos
+    <%= render partial: 'shared/editable_span', locals: {label: 'about_title'} %>
     <small>
-      <!--<span class="editable editable-small" data-label='about_title2'>-->
-              <!--<%= Label.retrieve('about_title2') %>-->
-            <!--</span>-->
-      Qui sommes nous ?
+      <%= render partial: 'shared/editable_span', locals: {label: 'about_title2'} %>
     </small>
   </h1>
 </div>
@@ -20,13 +14,11 @@
 <div class="col-md-12">
   <div class="header-splash-img">
     <div class="header-splash-intro">
-      <h1>Les valeurs d'activaction</h1>
+      <h1>
+        <%= render partial: 'shared/editable_span', locals: {label: 'about_h1'} %>
+      </h1>
 
-      <p>Activ'Action est une communauté de gens non-satisfaits dans leur travail et dont la plupart sont au chômage.
-        Activ'Action a pour but de rassembler et d'échanger sur ce sujet...
-        eleifend.
-        Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras enim lorem, aliquam sit amet justo vel,
-        pulvinar convallis quam. </p>
+      <%= render partial: 'shared/editable_p', locals: {label: 'about_main_text'} %>
     </div>
   </div>
 </div>
@@ -34,49 +26,24 @@
 <!--Skills and nums-->
 
 <div class="block skills-block">
-  <h2>Les différents type d'activités proposés</h2>
+  <h2>
+    <%= render partial: 'shared/editable_span', locals: {label: 'about_title3'} %>
+  </h2>
 
   <div class="col-md-12">
     <div class="row">
-      <div class="col-md-3 col-sm-6">
-        <h3 class="text-center">Creating Complex Websites</h3>
+      <% 1.upto 4 do |i| %>
+          <div class="col-md-3 col-sm-6">
+            <h3 class="text-center">
+              <%= render partial: 'shared/editable_span', locals: {label: "about_value#{i}_title"} %>
+            </h3>
 
-        <div class="easy-pie-chart-container">
+            <div class="easy-pie-chart-container">
+              <%= render partial: 'shared/editable_p', locals: {label: "about_value#{i}_text"} %>
+            </div>
+          </div>
+      <% end %>
 
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ante urna, luctus sit amet purus
-            posuere, laoreet aliquet magna. Fusce ultrices, tellus iaculis lobortis volutpat, augue metus euismod
-            nunc, sed congue nisi arcu at erat.</p>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6">
-        <h3 class="text-center">Managing Databases</h3>
-
-        <div class="easy-pie-chart-container">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ante urna, luctus sit amet purus
-            posuere, laoreet aliquet magna. Fusce ultrices, tellus iaculis lobortis volutpat, augue metus euismod
-            nunc, sed congue nisi arcu at erat.</p>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6">
-        <h3 class="text-center">Mobile Applications</h3>
-
-        <div class="easy-pie-chart-container">
-
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ante urna, luctus sit amet purus
-            posuere, laoreet aliquet magna. Fusce ultrices, tellus iaculis lobortis volutpat, augue metus euismod
-            nunc, sed congue nisi arcu at erat.</p>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6">
-        <h3 class="text-center">Hosting and Storage</h3>
-
-        <div class="easy-pie-chart-container">
-
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ante urna, luctus sit amet purus
-            posuere, laoreet aliquet magna. Fusce ultrices, tellus iaculis lobortis volutpat, augue metus euismod
-            nunc, sed congue nisi arcu at erat.</p>
-        </div>
-      </div>
     </div>
     <div class="row">
       <h2>Les valeurs d'Activ'Action</h2>
@@ -408,6 +375,3 @@ class="glyphicon glyphicon-chevron-right"></span> </a></div>
 
 
 </div>
-
-{{> footer}}
-</template>

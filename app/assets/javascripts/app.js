@@ -60,13 +60,20 @@ var app = {
             contentId = contentId.replace(/-aloha/gi, '');
           }
 
-          //console.log({content: content, id: contentId, pageId: '?'});
-
-          //var data = {label: Aloha.activeEditable.obj.data('label')};
-          var data = {wiki_page: {content: content, url: window.location.pathname}};
+          console.log('test:', Aloha.activeEditable.obj.data('label'), Aloha.activeEditable.obj.data('page-id'));
+          var url = '';
+          var data = {};
+          if (Aloha.activeEditable.obj.data('label')) {
+            url = '/labels/0';
+            data = {label: {content: content, label: Aloha.activeEditable.obj.data('label')}};
+          }
+          if (Aloha.activeEditable.obj.data('page-id')) {
+            url = '/wiki_pages/' + Aloha.activeEditable.obj.data('page-id');
+            data = {wiki_page: {content: content, url: window.location.pathname}};
+          }
           $.ajax({
             type: "PUT",
-            url: '/wiki_pages/' + Aloha.activeEditable.obj.data('page-id'),
+            url: url,
             data: data,
             success: function () {
               app.flash('success', 'Modifications enregistrées');

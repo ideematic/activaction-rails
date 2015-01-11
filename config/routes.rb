@@ -24,6 +24,7 @@ ActivactionRails::Application.routes.draw do
   resources :wiki_pages
   resources :users
   resources :attendances
+  resources :labels
 
   get '/wiki' => 'wiki_pages#handler'
   get '/wiki/*url' => 'wiki_pages#handler'

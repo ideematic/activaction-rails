@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ActivactionRails</title>
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+
+  <% title = Label.retrieve("title_#{request.path}") %>
+  <title><%= title == 'undefined' ? 'Activ\'Action' : "#{title} - Activ'Action" %></title>
+  <% description = Label.retrieve("description_#{request.path}") %>
+  <meta name="description" content="<%= description == 'undefined' ? 'La première platforme web pour les personnes non satisfaites de leur emploi' : description %>">
+  <% keywords = Label.retrieve("keywords_#{request.path}") %>
+  <meta name="keywords" content="<%= keywords == 'undefined' ? '' : keywords %>">
+  <link rel="shortcut icon" href="<%= Label.retrieve('favicon_url') %>">
 
   <% if admin? %>
       <link rel="stylesheet" href="/aloha/css/aloha.css" type="text/css">

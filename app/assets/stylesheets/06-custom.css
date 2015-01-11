@@ -92,6 +92,10 @@
     background-color: white;
 }
 
+.admin_box .metas b {
+    line-height: 25px;
+}
+
 .btn-micro {
     padding: 0 5px;
 }

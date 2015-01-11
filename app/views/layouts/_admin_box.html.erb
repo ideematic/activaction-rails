@@ -1,7 +1,7 @@
 <% if admin? %>
 
     <div class="list admin admin_box" style="border-top: none;line-height: 14px">
-      <div class="pull-right"><b>Quick admin</b></div>
+      <div class="pull-right"><b><a href="<%= admin_dashboard_path %>">Voir l'admin</a></b></div>
 
 
       <div>
@@ -9,7 +9,7 @@
         <button id="admin_collapse" class="btn btn-micro"><i class="fa fa-chevron-down"> moins</i></button>
       </div>
 
-      <i class='icon-list'></i> <a href="<%= admin_dashboard_path %>">Voir l'admin</a>
+      <br/>
 
       <div></div>
       <div style="margin: 4px 4px 4px 0;display: none">
@@ -27,27 +27,31 @@
 
       <i class='icon-eye-open'></i> Visu
       <div class="btn-group">
-        <button type="button" id="admin_preview" class="btn btn-micro active"><i class="fa fa-pencil-square-o"></i> Admin</button>
+        <button type="button" id="admin_preview" class="btn btn-micro active"><i class="fa fa-pencil-square-o"></i>
+          Admin
+        </button>
         <button type="button" id="normal_preview" class="btn btn-micro"><i class="fa fa-check"></i> Normal</button>
       </div>
 
       <div class='metas'>
-        <b>Title:</b> <span class="editable editable-small" data-label='<%= "title_#{request.path}" %>'>
-              <%= Label.retrieve("title_#{request.path}") %>
-            </span><br/>
-        <b>Description:</b> <span class='editable' data-label='<%= "description_#{request.path}" %>'>
-              <%= Label.retrieve("description_#{request.path}") %>
-            </span><br/>
-        <b>Keywords:</b> <span class='editable' data-label='<%= "keywords_#{request.path}" %>'>
-              <%= Label.retrieve("keywords_#{request.path}") %>
-            </span><br/>
+        <b>Title:</b><br/>
+        <%= render partial: 'shared/editable_span', locals: {label: "title_#{request.path}"} %>
+        <br/>
+
+        <b>Description:</b><br/>
+        <%= render partial: 'shared/editable_span', locals: {label: "description_#{request.path}"} %>
+        <br/>
+
+        <b>Keywords:</b><br/>
+        <%= render partial: 'shared/editable_span', locals: {label: "keywords_#{request.path}"} %>
+        <br/>
       </div>
+
+      <br/>
 
       <div class="favicon_editor">
         <b>Favicon</b>
-              <span class="editable editable-small" data-label='favicon_url'>
-                <%= Label.retrieve('favicon_url') %>
-              </span>
+        <%= render partial: 'shared/editable_span', locals: {label: 'favicon_url'} %>
       </div>
 
     </div>

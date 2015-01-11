@@ -4,7 +4,7 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = "Activaction Rails"
+  config.site_title = '<a href="/">< Retour sur le site</a>'.html_safe
 
   # see http://mrdanadams.com/2011/exclude-active-admin-js-css-rails
   config.clear_stylesheets!
