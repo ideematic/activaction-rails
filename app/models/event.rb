@@ -8,6 +8,7 @@ class Event < ActiveRecord::Base
   has_many :attendances
   has_many :attending_users, through: :attendances, source: :user
   has_many :comments, as: :commentable
+  has_many :likes
 
   validates_presence_of :user_id, :name, :description
 

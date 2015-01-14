@@ -3,7 +3,8 @@ app.events.show = {
     var self = this;
     self.initAttendBtn();
     self.initAttendCancelBtn();
-    self.initCommentEdit()
+    self.initCommentEdit();
+    self.initLikeBtn();
   },
 
   initAttendBtn: function () {
@@ -71,9 +72,36 @@ app.events.show = {
     });
   },
 
-  initCommentEdit: function() {
-    $('.edit-comment').click(function() {
+  initCommentEdit: function () {
+    $('.edit-comment').click(function () {
       alert('Ce qui est dit est dit. Impossible de modifier le commentaire.')
+    });
+  },
+
+  initLikeBtn: function () {
+    $('.btn-like-event').live('click', function () {
+      if (!app.user_signed_in()) {
+        app.flash('error', 'Vous devez être connecté pour liker un évènement.');
+        return false;
+      }
+      var action = $(this).data('id') ? 'unliking' : 'liking';
+      var url = $(this).data('url') + {unliking: '/' + $(this).data('id'), liking: ''}[action];
+      var data = {like: {event_id: $(this).data('event-id'), user_id: $(this).data('user-id')}};
+      console.log('test', url, data, action);
+      $.ajax({
+        type: {unliking: 'DELETE', liking: 'POST'}[action],
+        url: url,
+        data: data,
+        success: function () {
+          app.flash('success', {unliking: 'Vous n\'aimez plus cet évènement.', liking: 'Vous likez cet évènement'}[action]);
+        },
+        failure: function () {
+          app.flash('error', "Erreur. Impossible de liker (1)");
+        },
+        error: function () {
+          app.flash('error', "Erreur. Impossible de liker (2)");
+        }
+      });
     });
   }
 };

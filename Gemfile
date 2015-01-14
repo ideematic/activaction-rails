@@ -6,6 +6,7 @@ gem 'rmagick'
 gem 'activeadmin', github: 'activeadmin'
 gem 'faye-rails', '~> 2.0'
 gem 'thin'
+gem 'andand'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0'

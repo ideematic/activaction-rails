@@ -1,0 +1,9 @@
+<% color = current_user.andand.get_like(likable) ? 'grey' : 'default' %>
+<button class="btn btn-<%= color %> btn-xs pull-right btn-like-event" style="margin-right: 5px"
+        data-url="<%= likes_path %>"
+        data-user-id="<%= current_user.andand.id %>"
+        data-event-id="<%= likable.id %>"
+        data-id="<%= current_user.andand.get_like(likable).andand.id %>"
+        title="Liker cet évènement">
+  <span><i class="fa fa-heart"></i></span> <%= likable.likes.count %>
+</button>

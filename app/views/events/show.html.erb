@@ -59,11 +59,11 @@
           <span class="grey">|</span>
           <i class="fa fa-user"></i> Crée par <a href="#"><%= @event.user.username %></a>
           <span class="grey">|</span>
-          <i class="fa fa-comment"></i> 251
+          <i class="fa fa-comment"></i> <%= @event.comments.count %>
         </div>
-        <button class="btn btn-default btn-xs pull-right" style="margin-right: 5px">
-          <span><i class="fa fa-heart"></i></span> 256
-        </button>
+
+        <%= render partial: 'shared/like_btn', locals: {likable: @event} %>
+
       </div>
     </div>
     <!--<div class="main-blog-img"><img class="img-responsive" src="http://placehold.it/1024x768"/></div>-->

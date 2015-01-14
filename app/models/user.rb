@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :sent_chat_messages, foreign_key: :sender_id, class_name: ChatMessage
   has_many :received_chat_messages, foreign_key: :receiver_id, class_name: ChatMessage
+  has_many :likes
 
   STATUSES = [:accepted, :refused, :pending]
   # Include default devise modules. Others available are:
@@ -39,5 +40,9 @@ class User < ActiveRecord::Base
 
   def owner_of?(ownable) # event or comment
     self.id == ownable.user_id
+  end
+
+  def get_like(likable)
+    Like.where(user_id: self.id).where(event_id: likable.id).first
   end
 end
