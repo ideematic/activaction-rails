@@ -1,6 +1,25 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.order('created_at DESC').all
+    @search = params[:search].andand.strip
+    @events = Event.distinct.
+      joins('LEFT JOIN "event_skills" ON "event_skills"."event_id" = "events"."id"').
+      joins('LEFT JOIN "skills" ON "skills"."id" = "event_skills"."skill_id"').
+      joins('LEFT JOIN "event_tags" ON "event_tags"."event_id" = "events"."id"').
+      joins('LEFT JOIN "tags" ON "tags"."id" = "event_tags"."tag_id"')
+    wheres = []
+    if !@search.blank?
+      wheres << "events.name ilike '%#{@search}%' or events.description ilike '%#{@search}%'"
+    end
+    if !@search.blank?
+      wheres << "tags.name ilike '%#{@search}%' or skills.name ilike '%#{@search}%'"
+    end
+
+    @event_count = @events.
+      where(wheres.compact.join(' OR ')).
+      count
+    @events = @events.
+      where(wheres.compact.join(' OR ')).
+      order('created_at DESC').page(params[:page]).per(6)
 
     respond_to do |format|
       format.html # index.html.erb

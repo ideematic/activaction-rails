@@ -49,3 +49,10 @@ fr:
     <<: *defaults_dateformats
   time:
     <<: *defaults_dateformats
+  views:
+    pagination:
+      first: "&laquo; Première page"
+      last: "Dernière page &raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"

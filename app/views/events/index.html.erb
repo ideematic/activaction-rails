@@ -1,20 +1,50 @@
-<h1>Evènements</h1>
-<%= link_to 'Nouvel évènement', new_event_path, class: 'btn btn-default' %>
+<div class="frontend">
+  <div class="row">
 
-<div class=" frontend" id="activ-boost-home" style="background-color: #888">
-  <div>
-    <div class="main-page-blog-posts block">
-      <h2 class="h2_home" style="color: white;">
-        Tous les Evènements
-      </h2>
-      <% Event.all.each do |e| %>
+    <!--ItemsGrid-->
+    <div class="goods-grid main-page-blog-posts">
+      <div class="page-header">
+        <div class="row">
+          <div class="col-md-6">
+            <h1><%= @event_count %> Evènements</h1>
+          </div>
+          <div class="col-md-6 pull-right">
+
+            <%= link_to 'Nouvel évènement', new_event_path, class: 'btn btn-default', style: 'float: right' %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <%= paginate @events %>
+
+        <!--<small class="pull-right text-cold-grey margin-top"><strong>Showing:</strong> 12 from 591</small>-->
+
+      </div>
+      <div class="col-md-8 margin-bottom-20px">
+        <form method="GET" action="/events" class="navbar-form navbar-left pull-right" role="search" style="padding: 0;margin: 0">
+          <div class="form-group">
+            <input name="search" type="text" class="form-control" value="<%= @search %>" placeholder="Nom, tag ou compétence">
+          </div>
+          <button type="submit" class="btn btn-default">Rechercher</button>
+        </form>
+      </div>
+      <div class="clearfix"></div>
+
+
+      <% @events.each do |e| %>
           <%= render partial: 'events/event', locals: {event: e} %>
       <% end %>
 
       <div class="clearfix"></div>
+      <div class="col-md-12">
+        <%= paginate @events %>
+        <!--<small class="pull-right text-cold-grey margin-top"><strong>Showing:</strong> 12 from 591</small>-->
+        <div class="clearfix"></div>
+      </div>
     </div>
+    <!--/ItemsGrid-->
+
+    <div class="clearfix"></div>
 
   </div>
-
 </div>
-
