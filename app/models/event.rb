@@ -14,21 +14,21 @@ class Event < ActiveRecord::Base
 
   mount_uploader :picture, ImageUploader
 
-  def tags=(tags)
-    EventTag.where(event_id: self.id).delete_all
-    tags.split(';').each do |t|
-      new_tag = Tag.where(name: t).first_or_create
-      EventTag.where(tag_id: new_tag.id, event_id: self.id).first_or_create
-    end
-  end
-
-  def skills=(skills)
-    EventSkill.where(event_id: self.id).delete_all
-    skills.split(';').each do |t|
-      new_skill = Skill.where(name: t).first_or_create
-      EventSkill.where(skill_id: new_skill.id, event_id: self.id).first_or_create
-    end
-  end
+  # def tags=(tags)
+  #   EventTag.where(event_id: self.id).delete_all
+  #   tags.split(';').each do |t|
+  #     new_tag = Tag.where(name: t).first_or_create
+  #     EventTag.where(tag_id: new_tag.id, event_id: self.id).first_or_create
+  #   end
+  # end
+  #
+  # def skills=(skills)
+  #   EventSkill.where(event_id: self.id).delete_all
+  #   skills.split(';').each do |t|
+  #     new_skill = Skill.where(name: t).first_or_create
+  #     EventSkill.where(skill_id: new_skill.id, event_id: self.id).first_or_create
+  #   end
+  # end
 
   def date_formatted
     date && date.strftime('%d/%m/%Y')

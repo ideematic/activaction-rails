@@ -56,7 +56,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params)
+    @event = Event.new(parse_event_params event_params)
     @event.user_id = current_user.id
 
     respond_to do |format|
@@ -75,7 +75,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
 
     respond_to do |format|
-      if @event.update_attributes(event_params)
+      if @event.update_attributes(parse_event_params event_params)
         format.html { redirect_to @event, notice: 'L\'évènement a été mis à jour.' }
         format.json { head :no_content }
         format.js {}
@@ -105,10 +105,16 @@ class EventsController < ApplicationController
   end
 
   private
+  def parse_event_params(event_params)
+    event_params[:date] = '%s %s' % [event_params[:date].andand.split('/').reverse.join('-'),
+                                     event_params[:hour].andand.sub('h', ':')]
+    event_params.delete :hour
+    event_params[:tags] = event_params[:tags].split(';').map { |t| Tag.where(name: t).first_or_create }
+    event_params[:skills] = event_params[:skills].split(';').map { |s| Skill.where(name: s).first_or_create }
+    event_params
+  end
+
   def event_params
-    params[:event][:date] = '%s %s' % [params[:event][:date].split('/').reverse.join('-'),
-                                       params[:event][:hour].sub('h', ':')]
-    params[:event].delete :hour
     params.require(:event).permit(:user_id,
                                   :name,
                                   :date,
@@ -117,6 +123,8 @@ class EventsController < ApplicationController
                                   :picture,
                                   :category_id,
                                   :tags,
-                                  :skills)
+                                  :skills,
+                                  :spots)
+
   end
 end

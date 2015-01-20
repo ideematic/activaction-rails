@@ -212,3 +212,11 @@ body[data-admin=true] .onlyadmin {
     float: right;
     margin: 10px 15px 15px 15px;
 }
+
+.nolink {
+    cursor: default;
+}
+.nolink:hover {
+    cursor: default;
+    text-decoration: none;
+}

@@ -94,20 +94,31 @@
               </section>
             </div>
 
-            <section>
-              <label class="label">Tags <span style="text-transform: none"> - séparés par ;</span></label>
-              <label class="input"> <i class="icon-append fa fa-tags"></i>
-                <input type="text" name="event[tags]" placeholder="tag1;tag2"
-                       value="<%= @event.tags.map(&:name).join(';') %>">
-                <!--<b class="tooltip tooltip-bottom-right">Needed to enter the website</b> -->
-              </label>
-            </section>
+            <div class="row">
+              <section class="col col-6">
+                <label class="label">Tags <span style="text-transform: none"> - séparés par ;</span></label>
+                <label class="input"> <i class="icon-append fa fa-tags"></i>
+                  <input type="text" name="event[tags]" placeholder="tag1;tag2"
+                         value="<%= @event.tags.map(&:name).join(';') %>">
+                  <!--<b class="tooltip tooltip-bottom-right">Needed to enter the website</b> -->
+                </label>
+              </section>
+
+              <section class="col col-6">
+                <label class="label">Compétences <span style="text-transform: none"> - séparées par ;</span></label>
+                <label class="input"> <i class="icon-append fa fa-tags"></i>
+                  <input type="text" name="event[skills]" placeholder="compétence1;compétence2"
+                         value="<%= @event.skills.map(&:name).join(';') %>">
+                  <!--<b class="tooltip tooltip-bottom-right">Needed to enter the website</b> -->
+                </label>
+              </section>
+            </div>
 
             <section>
-              <label class="label">Compétences <span style="text-transform: none"> - séparées par ;</span></label>
-              <label class="input"> <i class="icon-append fa fa-tags"></i>
-                <input type="text" name="event[skills]" placeholder="compétence1;compétence2"
-                       value="<%= @event.skills.map(&:name).join(';') %>">
+              <label class="label">Nombres de places</label>
+              <label class="input"> <i class="icon-append fa fa-male"></i>
+                <input type="text" name="event[spots]" placeholder="15"
+                       value="<%= @event.spots %>">
                 <!--<b class="tooltip tooltip-bottom-right">Needed to enter the website</b> -->
               </label>
             </section>

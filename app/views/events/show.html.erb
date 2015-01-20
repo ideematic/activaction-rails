@@ -58,6 +58,10 @@
           <i class="fa fa-bookmark"></i> <a href="#"><%= @event.category.name %></a>
           <span class="grey">|</span>
           <i class="fa fa-user"></i> Crée par <a href="#"><%= @event.user.username %></a>
+          <% if @event.spots %>
+              <span class="grey">|</span>
+              <i class="fa fa-male"></i> Places disponibles <a href="#" class="nolink"><%= @event.spots %></a>
+          <% end %>
           <span class="grey">|</span>
           <i class="fa fa-comment"></i> <%= @event.comments.count %>
         </div>
@@ -94,7 +98,11 @@
   <div class="clearfix"></div>
   <div class="comments-block">
     <div class="page-header">
-      <h1>Participants <span class="badge"><%= @event.attending_users.count + 1 %></span></h1>
+      <h1>Participants <span class="badge">
+        <%= @event.attending_users.count + 1 %>
+        <%= '/' if @event.spots %>
+        <%= @event.spots %>
+      </span></h1>
     </div>
     <ul class="comments-list">
     </ul>

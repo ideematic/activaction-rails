@@ -79,7 +79,7 @@ app.events.show = {
   },
 
   initLikeBtn: function () {
-    $('.btn-like-event').live('click', function () {
+    $('body').on('click', '.btn-like-event', function () {
       if (!app.user_signed_in()) {
         app.flash('error', 'Vous devez être connecté pour liker un évènement.');
         return false;

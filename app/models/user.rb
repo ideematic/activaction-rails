@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :sent_chat_messages, foreign_key: :sender_id, class_name: ChatMessage
   has_many :received_chat_messages, foreign_key: :receiver_id, class_name: ChatMessage
   has_many :likes
+  has_one :city
 
   STATUSES = [:accepted, :refused, :pending]
   # Include default devise modules. Others available are:

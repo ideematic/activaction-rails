@@ -84,6 +84,18 @@
                   <em class="invalid"><%= resource.errors[:gender].join %></em>
               <% end %>
             </section>
+
+            <section>
+              <%= f.label :city, class: "select #{'state-error' if !resource.errors[:city].blank?}" do %>
+                  <i class="icon-append fa fa-user"></i>
+                  <%= f.select :city, City.all.map { |c| [c.name, c.id]}, class: 'form-control' %>
+                  <b class="tooltip tooltip-bottom-right">La ville est requise</b>
+                  <i></i>
+              <% end %>
+              <% if !resource.errors[:gender].blank? %>
+                  <em class="invalid"><%= resource.errors[:gender].join %></em>
+              <% end %>
+            </section>
           </fieldset>
 
           <fieldset>
