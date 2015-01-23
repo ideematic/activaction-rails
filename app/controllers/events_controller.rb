@@ -19,7 +19,7 @@ class EventsController < ApplicationController
       count
     @events = @events.
       where(wheres.compact.join(' OR ')).
-      order('created_at DESC').page(params[:page]).per(6)
+      order('created_at DESC').page(params[:page]).per(12)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -124,7 +124,10 @@ class EventsController < ApplicationController
                                   :category_id,
                                   :tags,
                                   :skills,
-                                  :spots)
+                                  :spots,
+                                  :address,
+                                  :latitude,
+                                  :longitude)
 
   end
 end

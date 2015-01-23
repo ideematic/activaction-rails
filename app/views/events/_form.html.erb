@@ -123,6 +123,21 @@
               </label>
             </section>
 
+            <section>
+              <label class="input"> <i class="icon-append fa fa-map-marker"></i>
+                <input id="pac-input" class="controls" type="text"
+                       placeholder="Choisissez une adresse" title="Choissisez parmis les suggestions"
+                       value="<%= @event.address %>">
+                <input id="event_address" type="hidden" name="event[address]" value="<%= @event.address %>">
+                <input id="event_latitude" type="hidden" name="event[latitude]" value="<%= @event.latitude %>">
+                <input id="event_longitude" type="hidden" name="event[longitude]" value="<%= @event.longitude %>">
+              </label>
+              <i class="fa fa-check" id="map-check" style="top: 22px; left: 427px;color: #8d8d92;display:none;position: absolute"></i>
+
+              <div id="map-canvas" class="input">
+              </div>
+            </section>
+
           </fieldset>
 
           <fieldset>

@@ -20,9 +20,9 @@
                 'html': 'true'
             });
         }
-		
-		
-		
+
+
+
 	// ========================================================================
     //	Portfolio and Gallery Isotope Filtering
     // ========================================================================
@@ -62,8 +62,8 @@
 
         });
     }
-		
-		
+
+
 
         // ========================================================================
         //	Easy Pie Charts in Front-End
@@ -159,7 +159,7 @@
 
 
 
-                    // How you would like to style the map. 
+                    // How you would like to style the map.
                     styles: [{
                         'featureType': 'water',
                         'stylers': [{
@@ -654,7 +654,7 @@
                 }
             },
 
-            // Ajax form submition					
+            // Ajax form submition
             submitHandler: function(form) {
                 $(form).ajaxSubmit({
                     beforeSend: function() {
@@ -772,7 +772,7 @@
                 }
             },
 
-            // Ajax form submition					
+            // Ajax form submition
             submitHandler: function(form) {
                 $(form).ajaxSubmit({
                     beforeSend: function() {
@@ -829,13 +829,13 @@
     // ========================================================================
     //	Quotes Rotator
     // ========================================================================
-	
+
     if ($('#cbp-qtrotator').length) {
         $('#cbp-qtrotator').cbpQTRotator();
     }
-	
-	
-	
+
+
+
 
 
 

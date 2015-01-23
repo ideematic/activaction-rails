@@ -3,6 +3,19 @@
 <head>
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
+  <% if admin? %>
+      <link rel="stylesheet" href="/aloha/css/aloha.css" type="text/css">
+      <script src="/aloha/lib/vendor/jquery-1.7.2.js"></script>
+      <script>
+          // see https://github.com/alohaeditor/Aloha-Editor/issues/707 for jquery conflict craziness
+          Aloha = window.Aloha || {};
+          Aloha.settings = Aloha.settings || {};
+          // Restore the global $ and jQuery variables of your project's jQuery
+          Aloha.settings.jQuery = window.jQuery.noConflict(true);
+      </script>
+      <script src="/aloha/lib/require.js"></script>
+      <script src="/aloha/lib/aloha.js" data-aloha-plugins="common/ui,common/format,common/table,common/list,common/highlighteditables,common/link,common/image,common/block,common/undo"></script>
+  <% end %>
   <%= csrf_meta_tags %>
 
   <% title = Label.retrieve("title_#{request.path}") %>
@@ -13,12 +26,6 @@
   <meta name="keywords" content="<%= keywords == 'undefined' ? '' : keywords %>">
   <link rel="shortcut icon" href="<%= Label.retrieve('favicon_url') %>">
 
-  <% if admin? %>
-      <link rel="stylesheet" href="/aloha/css/aloha.css" type="text/css">
-      <script src="/aloha/lib/require.js"></script>
-      <script src="/aloha/lib/vendor/jquery-1.7.2.js"></script>
-      <script src="/aloha/lib/aloha.js" data-aloha-plugins="common/ui,common/format,common/table,common/list,common/highlighteditables,common/link,common/image,common/block,common/undo"></script>
-  <% end %>
 </head>
 <body data-signed-in="<%= user_signed_in?.to_s %>" data-admin="<%= admin?.to_s %>">
 
@@ -52,6 +59,7 @@
         if (action != undefined) action.init();
     });
 </script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
 
 </body>
 </html>

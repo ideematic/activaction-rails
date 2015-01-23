@@ -5,6 +5,7 @@ app.events.show = {
     self.initAttendCancelBtn();
     self.initCommentEdit();
     self.initLikeBtn();
+    self.initGoogleMap();
   },
 
   initAttendBtn: function () {
@@ -103,5 +104,32 @@ app.events.show = {
         }
       });
     });
+  },
+
+  initializeGoogleMap: function () {
+    if (!$('#event_address').data('address')) return;
+    var myLatlng = new google.maps.LatLng($('#event_address').data('latitude'), $('#event_address').data('longitude'));
+    var mapOptions = {
+      zoom: 17,
+      center: myLatlng,
+      scrollwheel: false,
+    };
+    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+    var marker = new google.maps.Marker({
+      position: myLatlng,
+      map: map,
+      title: 'Hello World!'
+    });
+  },
+
+  initGoogleMap: function () {
+    if (!$('#event_address').data('address')) return;
+
+    $(window).resize(function () {
+      $('#map-canvas').css('height', 250);
+    }).resize();
+
+    google.maps.event.addDomListener(window, 'load', app.events.show.initializeGoogleMap);
   }
 };

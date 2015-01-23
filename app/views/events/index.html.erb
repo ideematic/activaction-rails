@@ -14,13 +14,13 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-6">
         <%= paginate @events %>
 
         <!--<small class="pull-right text-cold-grey margin-top"><strong>Showing:</strong> 12 from 591</small>-->
 
       </div>
-      <div class="col-md-8 margin-bottom-20px">
+      <div class="col-md-6 margin-bottom-20px">
         <form method="GET" action="/events" class="navbar-form navbar-left pull-right" role="search" style="padding: 0;margin: 0">
           <div class="form-group">
             <input name="search" type="text" class="form-control" value="<%= @search %>" placeholder="Nom, tag ou compétence">
