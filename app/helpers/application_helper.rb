@@ -16,4 +16,11 @@ module ApplicationHelper
     current_user && current_user.is_admin
   end
 
+  def own_profile?(user)
+    current_user && current_user.id == user.id
+  end
+
+  def form_state(where, section)
+    where.to_s == section.to_s ? 'form-state-editing' : 'form-state-static'
+  end
 end

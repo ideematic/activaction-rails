@@ -216,7 +216,34 @@ body[data-admin=true] .onlyadmin {
 .nolink {
     cursor: default;
 }
+
 .nolink:hover {
     cursor: default;
     text-decoration: none;
+}
+
+.form-state-static .static-row {
+    display: block;
+}
+
+.form-state-static .edit-row {
+    display:none;
+}
+
+.form-state-editing .static-row {
+    display: none;
+}
+
+.form-state-editing .edit-row {
+    display: block;
+}
+
+.aa-input-small {
+    height: 26px !important;
+}
+
+input[disabled] {
+    cursor: not-allowed !important;
+    background-color: #eee !important;
+    opacity: 1 !important;
 }

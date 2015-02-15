@@ -3,10 +3,20 @@ class User < ActiveRecord::Base
   has_many :attendances
   has_many :attended_events, through: :attendances, source: :event
   has_many :comments
-  has_many :sent_chat_messages, foreign_key: :sender_id, class_name: ChatMessage
-  has_many :received_chat_messages, foreign_key: :receiver_id, class_name: ChatMessage
+  has_many :sent_chat_messages, foreign_key: 'sender_id', class_name: ChatMessage
+  has_many :received_chat_messages, foreign_key: 'receiver_id', class_name: ChatMessage
   has_many :likes
-  has_one :city
+  belongs_to :city
+  has_many :tags, through: :events
+  has_many :skills, through: :events
+  has_many :user_wanted_tags
+  has_many :user_unwanted_tags
+  has_many :user_wanted_skills
+  has_many :user_unwanted_skills
+  has_many :wanted_tags, through: :user_wanted_tags, source: :tag
+  has_many :unwanted_tags, through: :user_unwanted_tags, source: :tag
+  has_many :wanted_skills, through: :user_wanted_skills, source: :skill
+  has_many :unwanted_skills, through: :user_unwanted_skills, source: :skill
 
   STATUSES = [:accepted, :refused, :pending]
   # Include default devise modules. Others available are:
@@ -46,4 +56,21 @@ class User < ActiveRecord::Base
   def get_like(likable)
     Like.where(user_id: self.id).where(event_id: likable.id).first
   end
+
+  def gender_formatted
+    {true => 'Femme', false => 'Homme', nil => '?'}[gender]
+  end
+
+  def skills_count
+    skills.group_by(&:name).map { |k, v| [k, v.size] }
+  end
+
+  # Skills user has acquired through events, minus unwanted skills, plus wanted skills
+  # by convention, we put wanted skills with a count of 0 in the hash
+  def computed_skills
+    skills_hash = Hash[skills_count] # {"générosité"=>1, "passion"=>2}
+    wanted_skills_hash = Hash[wanted_skills.map { |s| [s.name, 0] }] # {"jonglage"=>0, "passion"=>0}
+    wanted_skills_hash.merge(skills_hash).except(*unwanted_skills.map(&:name)) # {"générosité"=>1, "jonglage"=>0}
+  end
+
 end

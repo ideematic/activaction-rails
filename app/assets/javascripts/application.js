@@ -15,5 +15,6 @@
 //= require_directory .
 //= require_directory ./events
 //= require_directory ./static
+//= require_directory ./users
 //= require_directory ./vendor
 //= require faye

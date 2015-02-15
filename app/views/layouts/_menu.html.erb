@@ -27,10 +27,10 @@
               Bienvenue, <%= current_user.username.uc_first %>
               <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="<%= user_path current_user %>">Profile</a></li>
+                <li><a href="<%= user_path current_user %>">Mon profil</a></li>
                 <!--<li><a class='logout' href="">Logout</a></li>-->
                 <li>
-                  <%= link_to('Logout', destroy_user_session_path, class: 'logout') %>
+                  <%= link_to('Déconexion', destroy_user_session_path, class: 'logout') %>
                 </li>
               </ul>
             </li>

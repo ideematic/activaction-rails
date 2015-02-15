@@ -1,3 +1,7 @@
 class City < ActiveRecord::Base
-  belongs_to :user
+  has_one :user
+
+  def self.select_options
+    order('priority DESC').all.map { |c| [c.name, c.id] }
+  end
 end
