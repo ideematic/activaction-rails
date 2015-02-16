@@ -239,11 +239,15 @@ body[data-admin=true] .onlyadmin {
 }
 
 .aa-input-small {
-    height: 26px !important;
+    /*height: 36px !important;*/
 }
 
 input[disabled] {
     cursor: not-allowed !important;
     background-color: #eee !important;
     opacity: 1 !important;
+}
+
+.margin-top20 {
+    margin-top: 20px;
 }

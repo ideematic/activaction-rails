@@ -2,14 +2,34 @@ app.users.form = {
   init: function () {
     $('.btn-edit-private').click(function () {
       $('.user-private-info-form').removeClass('form-state-static').addClass('form-state-editing');
-//      $('.btn-cancel-private').show();
       $('.btn-edit-private').hide();
       return false;
     });
     $('.btn-cancel-private').click(function () {
       $('.user-private-info-form').removeClass('form-state-editing').addClass('form-state-static');
       $('.btn-edit-private').show();
-//      $('.btn-cancel-private').hide();
+      return false;
+    });
+
+    $('.btn-edit-public').click(function () {
+      $('.user-public-info-form').removeClass('form-state-static').addClass('form-state-editing');
+      $('.btn-edit-public').hide();
+      return false;
+    });
+    $('.btn-cancel-public').click(function () {
+      $('.user-public-info-form').removeClass('form-state-editing').addClass('form-state-static');
+      $('.btn-edit-public').show();
+      return false;
+    });
+
+    $('.btn-edit-social').click(function () {
+      $('.user-social-form').removeClass('form-state-static').addClass('form-state-editing');
+      $('.btn-edit-social').hide();
+      return false;
+    });
+    $('.btn-cancel-social').click(function () {
+      $('.user-social-form').removeClass('form-state-editing').addClass('form-state-static');
+      $('.btn-edit-social').show();
       return false;
     });
 
@@ -17,4 +37,4 @@ app.users.form = {
       placeholder: '_'
     });
   }
-}
+};

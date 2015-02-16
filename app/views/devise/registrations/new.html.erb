@@ -88,7 +88,7 @@
             <section>
               <%= f.label :city, class: "select #{'state-error' if !resource.errors[:city].blank?}" do %>
                   <i class="icon-append fa fa-user"></i>
-                  <%= f.select :city, City.select_options, class: 'form-control' %>
+                  <%= f.select :city, City.select_options, class: 'form-control', selected: resource.andand.city.andand.id %>
                   <b class="tooltip tooltip-bottom-right">La ville est requise</b>
                   <i></i>
               <% end %>

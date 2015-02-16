@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
   end
 
   def gender_formatted
-    {true => 'Femme', false => 'Homme', nil => '?'}[gender]
+    {true => 'Homme', false => 'Femme', nil => '?'}[gender]
   end
 
   def skills_count
@@ -71,6 +71,32 @@ class User < ActiveRecord::Base
     skills_hash = Hash[skills_count] # {"générosité"=>1, "passion"=>2}
     wanted_skills_hash = Hash[wanted_skills.map { |s| [s.name, 0] }] # {"jonglage"=>0, "passion"=>0}
     wanted_skills_hash.merge(skills_hash).except(*unwanted_skills.map(&:name)) # {"générosité"=>1, "jonglage"=>0}
+  end
+
+  def self.permit_params(params)
+    self.parse_params params.require(:user).permit(:user_id, :email, :first_name, :last_name, :gender, :bio, :username, :terms_at,
+                                                   :newsletter_at, :city, :birthdate, :studies, :desired_job, :professional_experiences,
+                                                   :education, :password, :password_confirmation, :facebook_url, :linkedin_url,
+                                                   :gplus_url, :twitter_url)
+  end
+
+  def self.parse_params(params)
+    if params[:newsletter_at]
+      params[:newsletter_at] = params[:newsletter_at] == '1' ? Time.now : nil
+    end
+    if params[:terms_at]
+      params[:terms_at] = params[:terms_at] == '1' ? Time.now : nil
+    end
+    if params[:birthdate]
+      params[:birthdate] = Date.new(*params[:birthdate].split('/').reverse.map(&:to_i)) rescue nil
+    end
+    if params[:gender]
+      params[:gender] = params[:gender] == 'true'
+    end
+    if params[:city]
+      params[:city] = City.find params[:city].to_i rescue nil
+    end
+    params
   end
 
 end

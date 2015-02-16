@@ -105,7 +105,7 @@ var app = {
     $('#normal_preview').click(function () {
       $(this).addClass('active');
       $('#admin_preview').removeClass('active');
-      $('.editable').mahalo();
+      Aloha.jQuery('.editable').mahalo();
       $('.editable').removeClass('aloha-editable');
       $('.editable').removeClass('aloha-editable-highlight');
       $('body').attr('data-admin', false);

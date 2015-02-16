@@ -87,10 +87,72 @@
         <!--<li><a href="http://vk.com/"><i class="entypo-vkontakte"></i></a></li>-->
         <!--<li><a href="http://flickr.com/"><i class="entypo-flickr-circled"></i></a></li>-->
       </ul>
-      <% if own_profile?(@user) && !params[:preview] %>
-          <a href="/?" class="btn btn-info btn-sm pull-right" style="position: absolute;top: 0;right: 15px;">
-            <i class="fa fa-pencil"></i> Modifier
-          </a>
+      <%= form_for(@user, html: {class: "form-horizontal user-social-form #{form_state(:social, @section)}",
+                                 style: 'background-color: #FFF;padding: 10px;margin: 15px 0 0 0;border-radius: 3px'}) do |f| %>
+          <%= f.hidden_field :section, value: 'social' %>
+          <div class="form-group edit-row" style="margin-bottom: 5px;">
+            <!--<label class="col-md-4 control-label" for="textinput"></label>-->
+
+            <div class="col-md-4">
+              <div class="input-group"> <span class="input-group-addon">
+              <i class="entypo-facebook"></i></span>
+                <!--<input id="prependedtext" name="prependedtext" class="form-control"-->
+                <!--placeholder="https://www.facebook.com/nom.prenom" type="text">-->
+                <%= f.text_field :facebook_url, placeholder: 'Prénom',
+                                 class: "form-control #{'state-error' if !@user.errors[:email].blank?}" %>
+                <% if !@user.errors[:email].blank? %>
+                    <em class="invalid"><%= @user.errors[:email].join %></em>
+                <% end %>
+              </div>
+              <!--<input id="textinput" name="textinput" placeholder="facebook url" class="form-control input-md" type="text">-->
+            </div>
+          </div>
+          <div class="form-group edit-row" style="margin-bottom: 5px;">
+            <!--<label class="col-md-4 control-label" for="textinput"></label>-->
+
+            <div class="col-md-4">
+              <div class="input-group"> <span class="input-group-addon">
+              <i class="entypo-linkedin"></i></span>
+                <input id="prependedtext" name="prependedtext" class="form-control" placeholder="https://www.linkedin.com/profile/view?id=000000000" type="text">
+              </div>
+              <!--<input id="textinput" name="textinput" placeholder="facebook url" class="form-control input-md" type="text">-->
+            </div>
+          </div>
+          <div class="form-group edit-row" style="margin-bottom: 5px;">
+            <!--<label class="col-md-4 control-label" for="textinput"></label>-->
+
+            <div class="col-md-4">
+              <div class="input-group"> <span class="input-group-addon">
+              <i class="entypo-gplus"></i></span>
+                <input id="prependedtext" name="prependedtext" class="form-control" placeholder="https://plus.google.com/000000000000000000000000" type="text">
+              </div>
+              <!--<input id="textinput" name="textinput" placeholder="facebook url" class="form-control input-md" type="text">-->
+            </div>
+          </div>
+          <div class="form-group edit-row" style="margin-bottom: 5px;">
+            <!--<label class="col-md-4 control-label" for="textinput"></label>-->
+
+            <div class="col-md-4">
+              <div class="input-group"> <span class="input-group-addon">
+              <i class="entypo-twitter"></i></span>
+                <input id="prependedtext" name="prependedtext" class="form-control" placeholder="https://twitter.com/pseudo" type="text">
+              </div>
+              <!--<input id="textinput" name="textinput" placeholder="facebook url" class="form-control input-md" type="text">-->
+            </div>
+          </div>
+          <%= f.submit 'Enregistrer', class: 'btn btn-default btn-sm edit-row pull-left', style: 'margin: 5px 0 10px 0' %>
+          <button class="btn btn-info btn-sm edit-row pull-left btn-cancel-social" style="margin: 5px 0 10px 5px">
+            <i class="fa fa-times"></i> Annuler
+          </button>
+          <div class="clearfix"></div>
+
+          <% if own_profile?(@user) && !params[:preview] %>
+              <a href="/?" class="btn btn-info btn-sm pull-right btn-edit-social"
+                 style="position: absolute;top: 0;right: 15px;">
+                <i class="fa fa-pencil"></i> Modifier
+              </a>
+          <% end %>
+
       <% end %>
     </div>
   </div>
@@ -122,32 +184,10 @@
     <% end %>
   </div>
 </div>
-<%= form_for(@user, html: {class: "orb-form event-form user-private-info-form #{form_state(:private, @section)}"}) do |f| %>
-    <%= f.hidden_field :section, value: 'private-info' %>
+<%= form_for(@user, html: {class: "orb-form user-private-info-form #{form_state(:private, @section)}"}) do |f| %>
+    <%= f.hidden_field :section, value: 'private' %>
     <table class="table" style="background-color: #FFF9F4;">
       <tbody>
-      <tr>
-        <td><strong>Prénom</strong></td>
-        <td>
-          <span class="static-row"><%= @user.first_name %></span>
-          <%= f.label :first_name, class: "input edit-row #{'state-error' if !@user.errors[:first_name].blank?}" do %>
-              <%= f.text_field :first_name, placeholder: 'Prénom', class: 'aa-input-small' %>
-          <% end %>
-          <% if !@user.errors[:first_name].blank? %>
-              <em class="invalid"><%= @user.errors[:first_name].join %></em>
-          <% end %>
-        </td>
-        <td><strong>Nom:</strong></td>
-        <td>
-          <span class="static-row"><%= @user.last_name %></span>
-          <%= f.label :last_name, class: "input edit-row #{'state-error' if !@user.errors[:last_name].blank?}" do %>
-              <%= f.text_field :last_name, placeholder: 'Prénom', class: 'aa-input-small' %>
-          <% end %>
-          <% if !@user.errors[:last_name].blank? %>
-              <em class="invalid"><%= @user.errors[:last_name].join %></em>
-          <% end %>
-        </td>
-      </tr>
       <tr>
         <td><strong>Email</strong></td>
         <td>
@@ -164,7 +204,7 @@
           <span class="static-row"><%= @user.birthdate ? (l @user.birthdate) : '' %></span>
           <%= f.label :birthdate, class: "input edit-row #{'state-error' if !@user.errors[:birthdate].blank?}" do %>
               <%= f.text_field :birthdate, placeholder: 'jj/mm/aaaa', class: 'aa-input-small birthdate',
-                               value: @user.birthdate.strftime('%d/%m/%Y') %>
+                               value: @user.birthdate.andand.strftime('%d/%m/%Y') %>
           <% end %>
           <% if !@user.errors[:birthdate].blank? %>
               <em class="invalid"><%= @user.errors[:birthdate].join %></em>
@@ -228,7 +268,7 @@
 
 <!--password ?-->
 
-<div class="profile-header">
+<div class="profile-header margin-top20">
   <div class="row">
     <div class="col-md-10">
       Informations publiques
@@ -238,7 +278,7 @@
     </div>
     <% if own_profile?(@user) && !params[:preview] %>
         <div class="col-md-2 pull-right">
-          <a href="/?" class="btn btn-info btn-sm pull-right">
+          <a href="#" class="btn btn-info btn-sm pull-right btn-edit-public">
             <i class="fa fa-pencil"></i> Modifier
           </a>
         </div>
@@ -246,53 +286,146 @@
   </div>
 </div>
 
-<p><%= @user.andand.bio.andand.blank? ? @user.bio : 'Pas de biographie.' %></p>
-<table class="table" style="background-color: #F6FCFF;">
-  <tbody>
-  <tr>
-    <td><strong>Sexe</strong></td>
-    <td><%= @user.gender_formatted %></td>
-    <td><strong>Ville</strong></td>
-    <td><%= @user.city.andand.name %></td>
-  </tr>
-  <tr>
-    <td><strong>Metier recherché</strong></td>
-    <td><%= 'todo' %></td>
-    <td><strong>Formation</strong></td>
-    <td><%= 'todo' %></td>
-  </tr>
-  <tr>
-    <td><strong>Expériences professionnelles</strong></td>
-    <td colspan="3">
-      <%= 'todo' %>
-    </td>
-  </tr>
-  <tr>
-    <td><strong>Bio</strong></td>
-    <td colspan="3"><%= @user.bio %>
-      sdf sdfsfsf sd fsf sdfsdf sdfsfsf sd fsf sdfsdf sdfsfsf sd fsf sdfsdf sdfsfsf sd fsf sdf
-      sdf sdfsfsf sd fsf sdfsdf sdfsfsf sd fsf sdfsdf sdfsfsf sd fsf sdfsdf sdfsfsf sd fsf sdf
-      sdf sdfsfsf sd fsf sdfsdf sdfsfsf sd fsf sdfsdf sdfsfsf sd fsf sdfsdf sdfsfsf sd fsf sdf
-      sdf sdfsfsf sd fsf sdfsdf sdfsfsf sd fsf sdfsdf sdfsfsf sd fsf sdfsdf sdfsfsf sd fsf sdf
-    </td>
-  </tr>
-  <tr>
-    <td><strong>Compétences</strong></td>
-    <td colspan="3">
-      <div class="blog-tags padding">
-        <% @user.computed_skills.each do |skill_name, skill_count| %>
-            <a href="#" rel="tag"><%= skill_name %> <%= "(#{skill_count})" if skill_count != 0 %></a>
-        <% end %>
-      </div>
-    </td>
-  </tr>
+<div class="clearfix"></div>
 
-  </tbody>
-</table>
+<%= form_for(@user, html: {class: "orb-form user-public-info-form #{form_state(:public, @section)}"}) do |f| %>
+    <%= f.hidden_field :section, value: 'public' %>
+    <table class="table" style="background-color: #F6FCFF;">
+      <tbody>
+
+      <tr>
+        <td><strong>Pseudo</strong></td>
+        <td colspan="3">
+          <span class="static-row"><%= @user.username %></span>
+          <%= f.label :username, class: "input edit-row #{'state-error' if !@user.errors[:username].blank?}" do %>
+              <%= f.text_field :username, placeholder: 'Pseudo', class: 'aa-input-small' %>
+          <% end %>
+          <% if !@user.errors[:username].blank? %>
+              <em class="invalid"><%= @user.errors[:username].join %></em>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Prénom</strong></td>
+        <td>
+          <span class="static-row"><%= @user.first_name %></span>
+          <%= f.label :first_name, class: "input edit-row #{'state-error' if !@user.errors[:first_name].blank?}" do %>
+              <%= f.text_field :first_name, placeholder: 'Prénom', class: 'aa-input-small' %>
+          <% end %>
+          <% if !@user.errors[:first_name].blank? %>
+              <em class="invalid"><%= @user.errors[:first_name].join %></em>
+          <% end %>
+        </td>
+        <td><strong>Nom:</strong></td>
+        <td>
+          <span class="static-row"><%= @user.last_name %></span>
+          <%= f.label :last_name, class: "input edit-row #{'state-error' if !@user.errors[:last_name].blank?}" do %>
+              <%= f.text_field :last_name, placeholder: 'Prénom', class: 'aa-input-small' %>
+          <% end %>
+          <% if !@user.errors[:last_name].blank? %>
+              <em class="invalid"><%= @user.errors[:last_name].join %></em>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Sexe</strong></td>
+        <td>
+          <span class="static-row"><%= @user.gender_formatted %></span>
+          <%= f.label :gender, class: "select edit-row #{'state-error' if !resource.errors[:gender].blank?}" do %>
+              <i class="icon-append fa fa-user"></i>
+              <%= f.select :gender, [['Homme', true], ['Femme', false]], class: 'form-control' %>
+              <i></i>
+          <% end %>
+          <% if !resource.errors[:gender].blank? %>
+              <em class="invalid"><%= resource.errors[:gender].join %></em>
+          <% end %>
+        </td>
+
+        <td><strong>Ville</strong></td>
+        <td>
+          <span class="static-row"><%= @user.city.andand.name %></span>
+          <%= f.label :city, class: "select edit-row #{'state-error' if !resource.errors[:city].blank?}" do %>
+              <i class="icon-append fa fa-user"></i>
+              <%= f.select :city, City.select_options, class: 'form-control', selected: @user.andand.city.andand.id %>
+              <i></i>
+          <% end %>
+          <% if !@user.errors[:city].blank? %>
+              <em class="invalid"><%= @user.errors[:city].join %></em>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Metier recherché</strong></td>
+        <td>
+          <span class="static-row"><%= @user.desired_job %></span>
+          <%= f.label :desired_job, class: "input edit-row #{'state-error' if !@user.errors[:desired_job].blank?}" do %>
+              <%= f.text_field :desired_job, placeholder: 'Métier recherché', class: 'aa-input-small' %>
+          <% end %>
+          <% if !@user.errors[:desired_job].blank? %>
+              <em class="invalid"><%= @user.errors[:desired_job].join %></em>
+          <% end %>
+        </td>
+
+        <td><strong>Formation</strong></td>
+        <td>
+          <span class="static-row"><%= @user.education %></span>
+          <%= f.label :education, class: "input edit-row #{'state-error' if !@user.errors[:education].blank?}" do %>
+              <%= f.text_field :education, placeholder: 'Education', class: 'aa-input-small' %>
+          <% end %>
+          <% if !@user.errors[:education].blank? %>
+              <em class="invalid"><%= @user.errors[:education].join %></em>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Expériences professionnelles</strong></td>
+        <td colspan="3">
+          <span class="static-row"><%= @user.professional_experiences %></span>
+          <%= f.label :professional_experiences, class: "textarea textarea-resizable edit-row #{'state-error' if !@user.errors[:professional_experiences].blank?}" do %>
+              <%= f.text_area :professional_experiences, placeholder: 'Expériences professionnelles', rows: 3 %>
+          <% end %>
+          <% if !@user.errors[:professional_experiences].blank? %>
+              <em class="invalid"><%= @user.errors[:professional_experiences].join %></em>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Bio</strong></td>
+        <td colspan="3">
+          <span class="static-row"><%= @user.bio %></span>
+          <%= f.label :bio, class: "textarea textarea-resizable edit-row #{'state-error' if !@user.errors[:bio].blank?}" do %>
+              <%= f.text_area :bio, placeholder: 'Bio', rows: 3 %>
+          <% end %>
+          <% if !@user.errors[:bio].blank? %>
+              <em class="invalid"><%= @user.errors[:bio].join %></em>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Compétences</strong></td>
+        <td colspan="3">
+          <div class="blog-tags padding">
+            <% @user.computed_skills.each do |skill_name, skill_count| %>
+                <a href="#" rel="tag"><%= skill_name %> <%= "(#{skill_count})" if skill_count != 0 %></a>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+
+      </tbody>
+    </table>
+
+    <%= f.submit 'Enregistrer', class: 'btn btn-default btn-sm edit-row pull-left', style: 'margin: 5px 0 10px 0' %>
+    <button class="btn btn-info btn-sm edit-row pull-left btn-cancel-public" style="margin: 5px 0 10px 5px">
+      <i class="fa fa-times"></i> Annuler
+    </button>
+<% end %>
+
+<div class="clearfix"></div>
 
 <%= render partial: 'users/network' %>
 
-<div class="profile-header">Evènements organisés
+<div class="profile-header margin-top20">Evènements organisés
   <span class="badge"><%= @user.events.count %></span>
 </div>
 <div class="goods-grid main-page-blog-posts" style="padding: 0">
@@ -303,7 +436,7 @@
 
 <div class="clearfix"></div>
 
-<div class="profile-header">Evènements auxquels je particpe
+<div class="profile-header margin-top20">Evènements auxquels je particpe
   <span class="badge"><%= @user.attended_events.count %></span>
 </div>
 
