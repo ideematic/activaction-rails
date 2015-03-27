@@ -130,13 +130,13 @@ var app = {
   },
 
   initChat: function () {
-    window.client = new Faye.Client('/faye');
-    client.subscribe('/chat', function (payload) {
-      if (payload.message) {
-        console.log('new message', payload.message);
-        //$('#comments').find('.media-list').prepend(payload.message)
-      }
-    });
+//    window.client = new Faye.Client('/faye');
+//    client.subscribe('/chat', function (payload) {
+//      if (payload.message) {
+//        console.log('new message', payload.message);
+//        //$('#comments').find('.media-list').prepend(payload.message)
+//      }
+//    });
 
     $('.user-menu-item').click(function () {
       if (!app.user_signed_in()) {

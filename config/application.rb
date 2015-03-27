@@ -24,6 +24,6 @@ module ActivactionRails
       "#{html_tag}".html_safe
     }
     config.middleware.delete Rack::Lock
-    config.middleware.use FayeRails::Middleware, mount: '/faye', :timeout => 25
+    # config.middleware.use FayeRails::Middleware, mount: '/faye', :timeout => 25
   end
 end

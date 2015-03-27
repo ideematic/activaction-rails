@@ -17,4 +17,3 @@
 //= require_directory ./static
 //= require_directory ./users
 //= require_directory ./vendor
-//= require faye
