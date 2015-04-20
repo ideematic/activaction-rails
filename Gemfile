@@ -2,13 +2,14 @@ source 'https://rubygems.org'
 
 gem 'devise'
 gem 'carrierwave'
-gem 'rmagick'
-gem 'activeadmin', github: 'activeadmin'
+gem 'rmagick', '2.13.1'
+gem 'activeadmin', :git => 'http://github.com/activeadmin/activeadmin.git'
 # gem 'faye-rails', '~> 2.0'
 gem 'thin'
 gem 'andand'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
+gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0'
@@ -54,8 +55,7 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 group :development, :staging do
-  gem "pry-debugger"
-  gem "debugger"
+  gem "byebug"
   gem 'better_errors'
   gem 'binding_of_caller'
   # gem 'rails_panel'
