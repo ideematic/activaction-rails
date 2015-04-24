@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @users = User.all
+    @users = User.all.order('created_at DESC')
 
     respond_to do |format|
       format.html # index.html.erb
