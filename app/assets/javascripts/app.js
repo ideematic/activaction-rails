@@ -7,7 +7,24 @@ var app = {
       self.initAloha();
       self.initAdminBox();
     }
+      self.initEventFilter();
   },
+
+    initEventFilter: function () {
+        var $allEvents = $('div[data-event-category-id]');
+        $('#select-filter-event-category').on("change", function () {
+        var sFilteredCategory = $(this).val();
+        $allEvents.each(function (iIndex, oDomElement) {
+
+          if ($(oDomElement).data('event-category-id') == sFilteredCategory || sFilteredCategory=="" ) {
+              $(oDomElement).show();
+          }
+           else {
+              $(oDomElement).hide();
+          }
+       });
+       });
+    },
 
   isAdmin: function () {
     return $('body').data('admin');

@@ -18,6 +18,8 @@ class EventsController < ApplicationController
         where(wheres.compact.join(' OR ')).
         count
 
+    @category = Category.distinct
+
     @current_user_activacteur = current_user && current_user.is_activacteur
 
     @event_future_count = @events.future.
