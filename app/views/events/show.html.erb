@@ -136,6 +136,9 @@
       <p class="attendant-name">
         <span class="bold-text"><%= @event.user.username.uc_first %></span>
         <span class="label bg-purple">Organisateur</span>
+        <% if @current_user_admin %>
+            <span class="bold-text"><%= @event.user.email %></span>
+        <% end %>
       </p>
 
       <p><%= @event.user.bio %></p>
@@ -149,6 +152,9 @@
           <p>
             <span class="bold-text"><%= u.username.uc_first %></span>
             <span class="label bg-dark-blue">Participant</span>
+            <% if @current_user_admin %>
+                <span class="bold-text"><%= u.email %></span>
+            <% end %>
           </p>
 
           <p><%= u.bio || '...' %></p>

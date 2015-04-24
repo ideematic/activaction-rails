@@ -43,6 +43,8 @@ class EventsController < ApplicationController
       redirect_to @event, status: :moved_permanently
       return
     end
+    @current_user_admin = current_user && current_user.is_admin
+
 
     respond_to do |format|
       format.html # show.html.erb
