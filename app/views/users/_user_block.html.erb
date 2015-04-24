@@ -6,10 +6,19 @@
         <ul>
           <li>Evènements organisés: <strong><%= user.events.count %></strong></li>
           <li>Evènements participés: <strong><%= user.attended_events.count %></strong></li>
+          <% if user.city %>
+            <li>Ville: <strong><%= user.city %></strong></li>
+          <% end %>
+          <% if user.bio %>
+            <li>Centres d'intérêt: <strong><%= user.bio %></strong></li>
+          <% end %>
         </ul>
         <!--<button class="btn btn-sm btn-success">Follow</button>-->
         <!--<button class="btn btn-sm btn-success">Ajouter aux contacts</button>-->
         <!--button class="btn btn-sm btn-warning">Chat</button-->
+          <a href="<%= url_for user %>" class="btn btn-sm btn-warning">
+            Profil
+          </a>
       </div>
     </div>
 <% end %>

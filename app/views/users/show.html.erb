@@ -166,106 +166,106 @@
 <!--</ul>-->
 <div id="myTabContent" class="tab-content user-profile-container">
 <div class="tab-pane in active" id="home" style="border-radius: 3px">
-
-<div class="profile-header">
-  <div class="row">
-    <div class="col-md-10">
-      Informations confidentielles
-      <span style="font-size:14px">
-      (non-visibles par les autres membres)
-    </span>
-    </div>
-    <% if own_profile?(@user) && !params[:preview] %>
-        <div class="col-md-2 pull-right">
-          <a href="#" class="btn btn-info btn-sm pull-right btn-edit-private">
-            <i class="fa fa-pencil"></i> Modifier
-          </a>
+<% if own_profile?(@user) && !params[:preview] %>
+    <div class="profile-header">
+      <div class="row">
+        <div class="col-md-10">
+          Informations confidentielles
+          <span style="font-size:14px">
+          (non-visibles par les autres membres)
+        </span>
         </div>
+
+            <div class="col-md-2 pull-right">
+              <a href="#" class="btn btn-info btn-sm pull-right btn-edit-private">
+                <i class="fa fa-pencil"></i> Modifier
+              </a>
+            </div>
+
+      </div>
+    </div>
+    <%= form_for(@user, html: {class: "orb-form user-private-info-form #{form_state(:private, @section)}"}) do |f| %>
+        <%= f.hidden_field :section, value: 'private' %>
+        <table class="table" style="background-color: #FFF9F4;">
+          <tbody>
+          <tr>
+            <td><strong>Email</strong></td>
+            <td>
+              <span class="static-row"><%= @user.email %></span>
+              <%= f.label :email, class: "input edit-row #{'state-error' if !@user.errors[:email].blank?}" do %>
+                  <%= f.text_field :email, placeholder: 'Prénom', class: 'aa-input-small', disabled: true %>
+              <% end %>
+              <% if !@user.errors[:email].blank? %>
+                  <em class="invalid"><%= @user.errors[:email].join %></em>
+              <% end %>
+            </td>
+            <td><strong>Date de naissance</strong></td>
+            <td>
+              <span class="static-row"><%= @user.birthdate ? (l @user.birthdate) : '' %></span>
+              <%= f.label :birthdate, class: "input edit-row #{'state-error' if !@user.errors[:birthdate].blank?}" do %>
+                  <%= f.text_field :birthdate, placeholder: 'jj/mm/aaaa', class: 'aa-input-small birthdate',
+                                   value: @user.birthdate.andand.strftime('%d/%m/%Y') %>
+              <% end %>
+              <% if !@user.errors[:birthdate].blank? %>
+                  <em class="invalid"><%= @user.errors[:birthdate].join %></em>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Session courante</strong></td>
+            <td>
+              <span class="static-row"><%= l @user.current_sign_in_at, format: :long %></span>
+              <label class="edit-row input">
+                <input name="last_session" type="text" class="aa-input-small"
+                       value="<%= l @user.current_sign_in_at, format: :long %>"
+                       disabled/>
+              </label>
+            </td>
+            <td><strong>Session précédente</strong></td>
+            <td>
+              <span class="static-row"><%= l @user.last_sign_in_at, format: :long %></span>
+              <label class="edit-row input">
+                <input name="last_session" type="text" class="aa-input-small"
+                       value="<%= l @user.last_sign_in_at, format: :long %>"
+                       disabled/>
+              </label>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Niveau d'études</strong></td>
+            <td>
+              <span class="static-row"><%= @user.studies %></span>
+              <%= f.label :studies, class: "input edit-row #{'state-error' if !@user.errors[:studies].blank?}" do %>
+                  <%= f.text_field :studies, placeholder: 'Bac +5', class: 'aa-input-small' %>
+              <% end %>
+              <% if !@user.errors[:studies].blank? %>
+                  <em class="invalid"><%= @user.errors[:studies].join %></em>
+              <% end %>
+            </td>
+            <td><strong>Recevoir newsletter</strong></td>
+            <td>
+              <span class="static-row"><%= {true => 'Oui', false => 'Non'}[!!@user.newsletter_at?] %></span>
+              <section class="edit-row">
+                <%= f.label :newsletter_at, class: "checkbox #{'state-error' if !@user.errors[:newsletter_at].blank?}" do %>
+                    <%= f.check_box :newsletter_at, class: 'aa-input-small', checked: !!@user.newsletter_at %>
+                    <i></i>
+                <% end %>
+                <% if !@user.errors[:newsletter_at].blank? %>
+                    <em class="invalid"><%= @user.errors[:newsletter_at].join %></em>
+                <% end %>
+              </section>
+            </td>
+          </tr>
+
+          </tbody>
+        </table>
+
+        <%= f.submit 'Enregistrer', class: 'btn btn-default btn-sm edit-row pull-left', style: 'margin: 5px 0 10px 0' %>
+        <button class="btn btn-info btn-sm edit-row pull-left btn-cancel-private" style="margin: 5px 0 10px 5px">
+          <i class="fa fa-times"></i> Annuler
+        </button>
     <% end %>
-  </div>
-</div>
-<%= form_for(@user, html: {class: "orb-form user-private-info-form #{form_state(:private, @section)}"}) do |f| %>
-    <%= f.hidden_field :section, value: 'private' %>
-    <table class="table" style="background-color: #FFF9F4;">
-      <tbody>
-      <tr>
-        <td><strong>Email</strong></td>
-        <td>
-          <span class="static-row"><%= @user.email %></span>
-          <%= f.label :email, class: "input edit-row #{'state-error' if !@user.errors[:email].blank?}" do %>
-              <%= f.text_field :email, placeholder: 'Prénom', class: 'aa-input-small', disabled: true %>
-          <% end %>
-          <% if !@user.errors[:email].blank? %>
-              <em class="invalid"><%= @user.errors[:email].join %></em>
-          <% end %>
-        </td>
-        <td><strong>Date de naissance</strong></td>
-        <td>
-          <span class="static-row"><%= @user.birthdate ? (l @user.birthdate) : '' %></span>
-          <%= f.label :birthdate, class: "input edit-row #{'state-error' if !@user.errors[:birthdate].blank?}" do %>
-              <%= f.text_field :birthdate, placeholder: 'jj/mm/aaaa', class: 'aa-input-small birthdate',
-                               value: @user.birthdate.andand.strftime('%d/%m/%Y') %>
-          <% end %>
-          <% if !@user.errors[:birthdate].blank? %>
-              <em class="invalid"><%= @user.errors[:birthdate].join %></em>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <td><strong>Session courante</strong></td>
-        <td>
-          <span class="static-row"><%= l @user.current_sign_in_at, format: :long %></span>
-          <label class="edit-row input">
-            <input name="last_session" type="text" class="aa-input-small"
-                   value="<%= l @user.current_sign_in_at, format: :long %>"
-                   disabled/>
-          </label>
-        </td>
-        <td><strong>Session précédente</strong></td>
-        <td>
-          <span class="static-row"><%= l @user.last_sign_in_at, format: :long %></span>
-          <label class="edit-row input">
-            <input name="last_session" type="text" class="aa-input-small"
-                   value="<%= l @user.last_sign_in_at, format: :long %>"
-                   disabled/>
-          </label>
-        </td>
-      </tr>
-      <tr>
-        <td><strong>Niveau d'études</strong></td>
-        <td>
-          <span class="static-row"><%= @user.studies %></span>
-          <%= f.label :studies, class: "input edit-row #{'state-error' if !@user.errors[:studies].blank?}" do %>
-              <%= f.text_field :studies, placeholder: 'Bac +5', class: 'aa-input-small' %>
-          <% end %>
-          <% if !@user.errors[:studies].blank? %>
-              <em class="invalid"><%= @user.errors[:studies].join %></em>
-          <% end %>
-        </td>
-        <td><strong>Recevoir newsletter</strong></td>
-        <td>
-          <span class="static-row"><%= {true => 'Oui', false => 'Non'}[!!@user.newsletter_at?] %></span>
-          <section class="edit-row">
-            <%= f.label :newsletter_at, class: "checkbox #{'state-error' if !@user.errors[:newsletter_at].blank?}" do %>
-                <%= f.check_box :newsletter_at, class: 'aa-input-small', checked: !!@user.newsletter_at %>
-                <i></i>
-            <% end %>
-            <% if !@user.errors[:newsletter_at].blank? %>
-                <em class="invalid"><%= @user.errors[:newsletter_at].join %></em>
-            <% end %>
-          </section>
-        </td>
-      </tr>
-
-      </tbody>
-    </table>
-
-    <%= f.submit 'Enregistrer', class: 'btn btn-default btn-sm edit-row pull-left', style: 'margin: 5px 0 10px 0' %>
-    <button class="btn btn-info btn-sm edit-row pull-left btn-cancel-private" style="margin: 5px 0 10px 5px">
-      <i class="fa fa-times"></i> Annuler
-    </button>
 <% end %>
-
 <!--password ?-->
 
 <div class="profile-header margin-top20">
@@ -390,7 +390,7 @@
         </td>
       </tr>
       <tr>
-        <td><strong>Bio</strong></td>
+        <td><strong>Centres d'intérêt</strong></td>
         <td colspan="3">
           <span class="static-row"><%= @user.bio %></span>
           <%= f.label :bio, class: "textarea textarea-resizable edit-row #{'state-error' if !@user.errors[:bio].blank?}" do %>
