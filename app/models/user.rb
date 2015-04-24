@@ -77,7 +77,7 @@ class User < ActiveRecord::Base
     self.parse_params params.require(:user).permit(:user_id, :email, :first_name, :last_name, :gender, :bio, :username, :terms_at,
                                                    :newsletter_at, :city, :birthdate, :studies, :desired_job, :professional_experiences,
                                                    :education, :password, :password_confirmation, :facebook_url, :linkedin_url,
-                                                   :gplus_url, :twitter_url)
+                                                   :gplus_url, :twitter_url, :manual_skill)
   end
 
   def self.parse_params(params)

@@ -376,11 +376,13 @@
       <tr>
         <td><strong>Compétences</strong></td>
         <td colspan="3">
-          <div class="blog-tags padding">
-            <% @user.computed_skills.each do |skill_name, skill_count| %>
-                <a href="#" rel="tag"><%= skill_name %> <%= "(#{skill_count})" if skill_count != 0 %></a>
+            <span class="static-row"><%= @user.manual_skill %></span>
+            <%= f.label :manual_skill, class: "textarea textarea-resizable edit-row #{'state-error' if !@user.errors[:manual_skill].blank?}" do %>
+                <%= f.text_area :manual_skill, placeholder: 'Compétences', rows: 3 %>
             <% end %>
-          </div>
+            <% if !@user.errors[:manual_skill].blank? %>
+                <em class="invalid"><%= @user.errors[:manual_skill].join %></em>
+            <% end %>
         </td>
       </tr>
 
