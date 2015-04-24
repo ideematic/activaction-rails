@@ -18,7 +18,7 @@
         Participez aux prochains Evènements
       </h2>
       <!--Blog Post-->
-      <% Event.limit(9).all.each do |e| %>
+      <% Event.future.limit(9).all.each do |e| %>
           <%= render partial: 'events/event', locals: {event: e} %>
       <% end %>
 

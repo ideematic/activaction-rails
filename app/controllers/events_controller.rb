@@ -14,7 +14,13 @@ class EventsController < ApplicationController
       wheres << "tags.name ilike '%#{@search}%' or skills.name ilike '%#{@search}%'"
     end
 
-    @event_count = @events.
+    @events_past_count =  @events.past.limit(10).
+        where(wheres.compact.join(' OR ')).
+        count
+
+    @current_user_activacteur = current_user && current_user.is_activacteur
+
+    @event_future_count = @events.future.
       where(wheres.compact.join(' OR ')).
       count
     @events = @events.

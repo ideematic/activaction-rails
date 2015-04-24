@@ -29,6 +29,8 @@ class Event < ActiveRecord::Base
   #     EventSkill.where(skill_id: new_skill.id, event_id: self.id).first_or_create
   #   end
   # end
+scope :future, -> {where 'date > ?' ,Time.now  }
+scope :past, -> {where 'date < ?' ,Time.now  }
 
   def date_formatted
     date && date.strftime('%d/%m/%Y')
