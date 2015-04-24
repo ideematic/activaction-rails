@@ -773,6 +773,22 @@ ol.process li:active i {
 .team-carousel .item {
 	padding: 10px 45px;
 }
+
+
+.team-carousel .item .about-block {
+    width:100%;
+    height:100%;
+    background-size: 100% auto;
+}
+
+.team-carousel .item .about-block .about-block-text {
+    width:30%;
+    float:right;
+    margin-right:10px;
+    color:white;
+    font-size:18px;
+}
+
 .other-team-member-block {
 	text-align: center;
 	padding: 25px;
@@ -2326,6 +2342,7 @@ ol.process li:nth-child(odd) {
 .team-carousel .item {
 	padding: 10px 10px;
 }
+
 .other-team-member-block {
 	padding: 10px;
 }

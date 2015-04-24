@@ -1,6 +1,69 @@
 <div class="frontend">
 
 
+    <div class="row">
+        <div class="clearfix"></div>
+        <div class="team-carousel">
+
+            <!--Team Carousel-->
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="item active">
+
+                        <!--About Col-->
+                        <div class="about-block" style="background-image:url(http://bigmedved.ru/orb/frontend/images/splash-about.jpg)">
+                            <div class="about-block-text">
+                                <%= render partial: 'shared/editable_span', locals: {label: 'landing_carousel_text_1'} %>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="item">
+
+                        <!--About Col-->
+                        <div class="about-block" style="background-image:url(http://bigmedved.ru/orb/frontend/images/splash-about.jpg)">
+                            <div class="about-block-text">
+                                <%= render partial: 'shared/editable_span', locals: {label: 'landing_carousel_text_2'} %>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="item">
+
+                        <!--About Col-->
+                        <div class="about-block" style="background-image:url(http://bigmedved.ru/orb/frontend/images/splash-about.jpg)">
+                            <div class="about-block-text">
+                                <%= render partial: 'shared/editable_span', locals: {label: 'landing_carousel_text_3'} %>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev"> <span
+                class="glyphicon glyphicon-chevron-left"></span> </a> <a class="right carousel-control"
+                                                                         href="#carousel-example-generic"
+                                                                         role="button"
+                                                                         data-slide="next"> <span
+            class="glyphicon glyphicon-chevron-right"></span> </a></div>
+            <!--/Team Carousel-->
+
+        </div>
+        <div class="clearfix"></div>
+
+
+    </div>
+</div>
+
+
+<div class="frontend">
+
+
   <div class="row">
     <div class="clearfix"></div>
     <%= render partial: 'shared/community_block' %>
