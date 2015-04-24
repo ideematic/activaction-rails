@@ -3,5 +3,5 @@ ActiveAdmin.register User do
                 :current_sign_in_ip, :last_sign_in_ip, :created_at, :updated_at, :first_name, :last_name,
                 :gender, :bio, :username, :terms_at, :newsletter_at, :is_admin, :city_id, :birthdate, :studies,
                 :desired_job, :professional_experiences, :education, :facebook_url, :linkedin_url, :gplus_url,
-                :twitter_url
+                :twitter_url, :is_activacteur
 end
