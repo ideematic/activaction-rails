@@ -42,7 +42,7 @@
 <!--Profile-->
 <div class="user-profile">
 <div class="main-info">
-  <div class="user-img"><img src="http://placehold.it/150x150" alt="User Picture"></div>
+  <div class="user-img"><img src="/images/default-avatar.png" alt="User Picture"></div>
   <h1><%= @user.first_name.uc_first %> <%= @user.last_name.uc_first %></h1>
   Evènements organisés: <%= @user.events.count %> | Participés: <%= @user.attended_events.count %>
   <% if @user.city && @user.city != 1 %>
@@ -72,10 +72,10 @@
   <div class="row">
     <div class="col-md-12">
       <ul class="social">
-        <li><a href="<%= @user.facebook_url %>" target="_blank"><i class="entypo-facebook-circled"></i></a></li>
-        <li><a href="<%= @user.linkedin_url %>" target="_blank"><i class="entypo-linkedin-circled"></i></a></li>
-        <li><a href="<%= @user.gplus_url %>" target="_blank"><i class="entypo-gplus-circled"></i></a></li>
-        <li><a href="<%= @user.twitter_url %>" target="_blank"><i class="entypo-twitter-circled"></i></a></li>
+        <% if @user.facebook_url && @user.facebook_url != "" %><li><a href="<%= @user.facebook_url %>" target="_blank"><i class="entypo-facebook-circled"></i></a></li><% end %>
+        <% if @user.linkedin_url &&  @user.linkedin_url != "" %><li><a href="<%= @user.linkedin_url %>" target="_blank"><i class="entypo-linkedin-circled"></i></a></li><% end %>
+        <% if @user.gplus_url  && @user.gplus_url != "" %><li><a href="<%= @user.gplus_url %>" target="_blank"><i class="entypo-gplus-circled"></i></a></li><% end %>
+        <% if @user.twitter_url && @user.twitter_url != "" %><li><a href="<%= @user.twitter_url %>" target="_blank"><i class="entypo-twitter-circled"></i></a></li><% end %>
       </ul>
       <%= form_for(@user, html: {class: "form-horizontal user-social-form #{form_state(:social, @section)}",
                                  style: 'background-color: #FFF;padding: 10px;margin: 15px 0 0 0;border-radius: 3px'}) do |f| %>
@@ -366,7 +366,7 @@
         <td colspan="3">
           <span class="static-row"><%= @user.bio %></span>
           <%= f.label :bio, class: "textarea textarea-resizable edit-row #{'state-error' if !@user.errors[:bio].blank?}" do %>
-              <%= f.text_area :bio, placeholder: 'Bio', rows: 3 %>
+              <%= f.text_area :bio, placeholder: 'Centres d\'intérêt', rows: 3 %>
           <% end %>
           <% if !@user.errors[:bio].blank? %>
               <em class="invalid"><%= @user.errors[:bio].join %></em>

@@ -1,18 +1,18 @@
 <% users.each do |user| %>
     <div class="col-md-4 col-sm-6">
       <div class="tiny-user-block clearfix">
-        <div class="user-img"><img src="http://bigmedved.ru/orb/images/users/1.jpg" alt="User"></div>
+        <div class="user-img"><img src="/images/default-avatar.png" alt="User"></div>
         <h3><%= user.username %></h3>
         <ul>
           <li>Evènements organisés: <strong><%= user.events.count %></strong></li>
           <li>Evènements participés: <strong><%= user.attended_events.count %></strong></li>
-          <% if user.city %>
+          <% if user.city && user.city != "" %>
             <li>Ville: <strong><%= user.city.name %></strong></li>
           <% end %>
-          <% if user.bio %>
+          <% if user.bio && user.bio != "" %>
             <li>Centres d'intérêt: <strong><%= user.bio %></strong></li>
           <% end %>
-          <% if user.bio %>
+          <% if user.manual_skill && user.manual_skill != "" %>
             <li>Compétences: <strong><%= user.manual_skill %></strong></li>
           <% end %>
         </ul>
